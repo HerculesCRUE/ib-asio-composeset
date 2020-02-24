@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿# Despliegue en entorno de desarrollo para la Universidad de Murcia
+# Despliegue en entorno de desarrollo para la Universidad de Murcia
 ---
 
 ## Entornos 
