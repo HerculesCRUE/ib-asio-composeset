@@ -1,0 +1,102 @@
+version: '3.1'
+
+services:
+  input-processor:
+    image: umansioacr.azurecr.io/input/input-processor
+    restart: unless-stopped
+    ports:
+      - "9321:9321"
+    volumes:
+      - input-processor-data:/var/lib/input-processor
+    environment:
+      APP_KAFKA_INPUT_TOPIC_NAME: "input-data"
+      APP_KAFKA_GENERAL_TOPIC_NAME: "general-data"
+      APP_KAFKA_CREATE_TOPICS: "true"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "herc-iz-bd-desa.atica.um.es:29092"
+      SPRING_KAFKA_CONSUMER_BOOTSTRAP_SERVERS: "herc-iz-bd-desa.atica.um.es:29092"
+      SPRING_KAFKA_CONSUMER_GROUP_ID: "input-processor"
+      SPRING_PROFILES_ACTIVE: "des"
+      GRAYLOG_HOST: "herc-iz-bd-desa.atica.um.es"
+ #   networks:
+ #     default:
+ #       aliases:
+ #         - input-processor.svc
+    depends_on:
+    - wikibase-event-processor
+  management-system:
+    image: umansioacr.azurecr.io/event-management/management-system
+    restart: unless-stopped
+    ports:
+      - "8082:8080"
+      - "9322:9321"
+    volumes:
+      - management-system-data:/var/lib/management-system
+    environment:
+      APP_KAFKA_GENERAL_TOPIC_NAME: "general-data"
+      APP_KAFKA_MANAGEMENT_TOPIC_NAME: "management-system-data"
+      APP_KAFKA_CREATE_TOPICS: "true"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "herc-iz-bd-desa.atica.um.es:29092"
+      SPRING_KAFKA_CONSUMER_BOOTSTRAP_SERVERS: "herc-iz-bd-desa.atica.um.es:29092"
+      SPRING_KAFKA_CONSUMER_GROUP_ID: "management-system"
+      APP_SWAGGER_ENABLED: "true"
+      SPRING_PROFILES_ACTIVE: "des"
+      GRAYLOG_HOST: "herc-iz-bd-desa.atica.um.es"
+  #  networks:
+  #    default:
+  #      aliases:
+  #        - management-system.svc
+  wikibase-storage-adapter:
+    image:  umansioacr.azurecr.io/event-management/wikibase-storage-adapter:1.0-SNAPSHOT-7
+    restart: unless-stopped
+    ports:
+      - "8084:8080"
+      - "9324:9321"
+    volumes:
+      - wikibase-storage-adapter-data:/var/lib/wikibase-storage-adapter
+    depends_on:
+      - management-system
+    environment:
+      APP_KAFKA_SUCCESS_TOPIC_NAME: "success-data"
+      APP_KAFKA_CREATE_TOPICS: "true"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "herc-iz-bd-desa.atica.um.es:29092"
+      APP_SWAGGER_ENABLED: "true"
+      APP_DATA_PATH: ""
+      APP_DATA_INITIAL: "true"
+      APP_WIKIBASE_API_URL: "http://herc-iz-bd-desa.atica.um.es:8181/api.php"
+      APP_WIKIBASE_API_USERNAME: "WikibaseAdmin"
+      APP_WIKIBASE_API_PASSWORD: "WikibaseAdminPass"
+      APP_WIKIBASE_QUERY_DEFAULT_LANGUAGE: "es"
+      APP_WIKIBASE_SITE_URI: "http://herc-iz-bd-desa.atica.um.es:8181/entity/"
+      SPRING_PROFILES_ACTIVE: "des"
+      GRAYLOG_HOST: "herc-iz-bd-desa.atica.um.es"
+ #   networks:
+ #     default:
+ #       aliases:
+ #         - wikibase-storage.svc
+  wikibase-event-processor:
+    image: umansioacr.azurecr.io/event-management/wikibase-event-processor:1.0-SNAPSHOT-8
+    restart: unless-stopped
+    ports:
+      - "9323:9321"
+    volumes:
+      - wikibase-event-processor-data:/var/lib/wikibase-event-processor
+    environment:
+      APP_KAFKA_MANAGEMENT_TOPIC_NAME: "management-system-data"
+      APP_KAFKA_CREATE_TOPICS: "true"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "herc-iz-bd-desa.atica.um.es:29092"
+      SPRING_KAFKA_CONSUMER_BOOTSTRAP_SERVERS: "herc-iz-bd-desa.atica.um.es:29092"
+      SPRING_KAFKA_CONSUMER_GROUP_ID: "wikibase-event-processor"
+      APP_MICROSERVICES_WIKIBASE_STORAGE_ADAPTER_BASE_URL: "http://wikibase-storage-adapter:8080"
+      SPRING_PROFILES_ACTIVE: "des"
+      GRAYLOG_HOST: "herc-iz-bd-desa.atica.um.es"
+#    networks:
+#      default:
+#        aliases:
+#          - wikibase-event-processor.svc
+    depends_on:
+      - wikibase-storage-adapter
+volumes:
+  input-processor-data:
+  management-system-data:
+  wikibase-storage-adapter-data:
+  wikibase-event-processor-data:

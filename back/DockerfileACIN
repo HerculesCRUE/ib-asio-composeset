@@ -1,0 +1,14 @@
+ARG job_name
+
+FROM umansioacr.azurecr.io/input/simulator-importer
+ENV APP_PERSISTENCE_DATASOURCE_USERNAME hercules
+ENV APP_PERSISTENCE_DATASOURCE_PASSWORD h3rcul3s
+ENV APP_PERSISTENCE_DATASOURCE_URL jdbc:mysql://herc-iz-bd-desa.atica.um.es:3306/asio_jobs?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8
+ENV APP_KAFKA_INPUT_TOPIC_NAME input-data
+ENV APP_KAFKA_CREATE_TOPICS true
+ENV SPRING_KAFKA_BOOTSTRAP_SERVERS herc-iz-bd-desa.atica.um.es:29092
+ENV APP_DATA_PATH "/data"
+ENV APP_DATA_INITIAL true
+ENV SPRING_BATCH_INITIALIZE_SCHEMA always
+ADD data /data
+ENTRYPOINT ["java", "-jar", "-Dspring.batch.job.names=academicInstitutionJob","/opt/app/app.jar"]
