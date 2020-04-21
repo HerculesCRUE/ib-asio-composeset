@@ -5,8 +5,6 @@
 
 ### Hardware  
 
-&nbsp;
-
 | Nombre | herc-iz-front-desa.atica.um.es | herc-iz-back-desa.atica.um.es | herc-iz-bd-desa.atica.um.es |
 |---|---|---|---|
 | **IP**  | 155.54.239.207  | 155.54.239.208  | 155.54.239.209 |
@@ -16,174 +14,150 @@
 | **CORES** | 4  | 4  | 4 |
 | **ARQUITECTURA** | 64  | 64  | 64 |
 
-&nbsp;
+### Usuario
 
-###Usuario
-
-&nbsp;
 
 Se crea el usuario **herculesizertis** en todos los entornos para realizar tareas de despliegue y gestión.
 
-&nbsp;
-
-##Instalaciones
+## Instalaciones
 
 ### Docker
----
-
-&nbsp;
 
 Instalar dependencias   
-`
+
+```
 sudo yum install -y yum-utils device-mapper-persistent-data lvm2
-`   
-&nbsp;
+```
 
 Añadir repositorio   
-`
+
+```
 sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-`   
-&nbsp;
+```
 
 Instalar docker-ce   
-`
+
+```
 sudo yum install docker-ce
-`   
-&nbsp;
+``` 
 
 Añadir el usuario actual el grupo docker   
-`
+
+```
 sudo usermod -aG docker $(whoami)
-`   
-&nbsp;
+```
 
 Configurar el servicio Docker para comenzar automáticamente en cada reinicio   
-`
+```
 sudo systemctl enable docker.service
-`   
-&nbsp;
+``` 
 
 Arrancar servicio  
-`
+
+```
 sudo systemctl start docker.service
-`   
-&nbsp;
+```
 
 ### Crear usuario   
-----
-
-&nbsp;
 
 Crear grupo de usuario   
-`
+
+```
 sudo groupadd herculesizertis
-`   
-&nbsp;
+```
 
 Crear  usuario **herculesizertis**  
-`
-sudo useradd -g herculesizertis  -d /home/herculesizertis -m -p h3rcul3s1z3rt1s herculesizertis`   
 
-&nbsp;
+```
+sudo useradd -g herculesizertis  -d /home/herculesizertis -m -p h3rcul3s1z3rt1s herculesizertis
+```
 
 Añadir grupos **herculesizertis**  
-`sudo usermod -a -G sistemas herculesizertis`   
-`sudo usermod -a -G docker herculesizertis`  
 
-&nbsp;
-
+```
+sudo usermod -a -G sistemas herculesizertis
+sudo usermod -a -G docker herculesizertis
+```
 
 Cambiar el grupo  
-`sudo usermod -a -G sistemas herculesizertis`   
-`sudo usermod -a -G docker herculesizertis`  
 
-&nbsp;
-
+```
+sudo usermod -a -G sistemas herculesizertis
+sudo usermod -a -G docker herculesizertis
+```
 
 Dar los permisos a usuario  
-`usermod -a -G wheel herculesizertis`   
 
-&nbsp;
-
+```
+usermod -a -G wheel herculesizertis
+```
 
 Cambiar de usuario   
 
-`su herculesizertis`  
-
-- Password: h3rcul3s1z3rt1s
-
-&nbsp;
+```
+su herculesizertis
+```
 
 Dar los permisos a usuario  
-`usermod -a -G wheel herculesizertis`   
 
-&nbsp;
+```
+usermod -a -G wheel herculesizertis
+```
 
 Cambiar grupo principal
 
-`newgrp docker`
-
-&nbsp;
+```
+newgrp docker
+```
 
 ### Instalar docker-compose   
-----
-
-&nbsp;
 
 Actualizar
 
-`
- yum update -y
-`   
-&nbsp;
-
+```
+yum update -y
+```
 
 Instalar dependencias
 
-`
+```
 sudo yum install epel-release
-`   
-&nbsp;
+```
 
 Instalar Python y gcc
 
-`
- sudo yum install -y python-pip python-devel gcc
-`   
-&nbsp;
+```
+sudo yum install -y python-pip python-devel gcc
+```
 
 Actualizar python
 
-`
+```
  sudo yum upgrade python*
-`   
-&nbsp;
+```
 
 Actualizar pip
 
-`
- sudo pip install --upgrade pip
-`   
-&nbsp;
+```
+sudo pip install --upgrade pip
+``` 
 
 Instalar docker-compose
 
-`
- sudo pip install docker-compose
-`   
-&nbsp;
+```
+sudo pip install docker-compose
+```
 
 Comprobar instalacion
 
-`
+```
 docker-compose version
-`   
-&nbsp;
+```
 
-##Despliegue  
+## Despliegue  
 
-###Servicios
----
+### Servicios
+
 Se determina en la fase inicial del proyecto, desplegar todos los servicios en la maquina herc-iz-bd-desa.atica.um.es, posteriormente según la volumetría de datos y el consumo de maquina, podría estimarse la posibilidad de mover algunos de ellos a otras maquinas.
 
 Los servicios desplegados son:
@@ -259,14 +233,11 @@ Los servicios desplegados son:
 
 #### Despliegue
 
-&nbsp;
-
 **Requisitos**:  
 
 - Docker-compose.yaml (en ruta )
-&nbsp;
 
-```yaml
+```yml
 # Wikibase with Query Service
 #
 # This docker-compose example can be used to pull the images from docker hub.
@@ -501,66 +472,48 @@ volumes:
 
 ```
 
-
-
-&nbsp;
-
-
 **Despliegue**:
 
-&nbsp;
-
-1.- copiar todos los ficheros en el usuario herculesizertis carpeta deploy
-
-2.- Ejecutar los comandos para desplegar:
-
-&nbsp;
+1. Copiar todos los ficheros en el usuario herculesizertis carpeta deploy
+2. Ejecutar los comandos para desplegar:
 
 Ejecutar docker-compose en segundo plano
 
-`docker-compose up -d`
-
-&nbsp;
+```
+docker-compose up -d
+```
 
 Ver los logs
 
-`docker-compose logs -f -t`
-
-&nbsp;
+```
+docker-compose logs -f -t
+```
 
 Ver contenedores
 
-`docker-compose ps`
+```
+docker-compose ps
+```
 
-&nbsp;
+Detener docker-compose
 
-Deneter docker-compose
-
-`docker-compose down`
-
-&nbsp;
-
-Deneter docker-compose
-
-`docker-compose down`
-
-&nbsp;
+```
+docker-compose down
+```
 
 Deneter docker-compose y borrar volumenes
 
-`docker-compose down -v`
-
-&nbsp;
+```
+docker-compose down -v
+```
 
 Borrar todo
 
-`docker-compose rm`
+```
+docker-compose rm
+```
 
-&nbsp;
-
-
-###Micro-servicios
----
+### Micro-servicios
 
 Las imágenes de los micro servicios se encuentran en el repositorio ACR de Azure.
 
@@ -652,15 +605,13 @@ Los servicios desplegados son:
 
   Dependencias: **-**
 
-  
-
 - **simulator-importer** (batch job)
   Nombre Servicio: **simulator-importer**
   Puertos: **8080 **
 
   Función: Job java lanzado periódicamente para leer de un fichero desde una determinada ruta, y lanzar los datos leídos hacia el microservicio input-processor por medio de una cola kafka. Puede ser lanzado con 3 Job distintos:
 
-  `- academicInstitutionJob`: job encargado de simular datos de tipo "Academic institution"
+  - `academicInstitutionJob`: job encargado de simular datos de tipo "Academic institution"
 
   - Datos Inciales:
 
@@ -675,7 +626,7 @@ Los servicios desplegados son:
     - Dockerfile: **DockerfileACIN**
     - Nombre imagen docker: **simulator-importer-academic:1.0**
 
-  `- researcherJob`: job encargado de simular datos de tipo "Researcher"
+  - `researcherJob`: job encargado de simular datos de tipo "Researcher"
 
   - Datos Inciales:
 
@@ -692,7 +643,7 @@ Los servicios desplegados son:
 
     
 
-  `- titleDegreeJob`: job encargado de simular datos de tipo "Title - Degree" 
+  - `titleDegreeJob`: job encargado de simular datos de tipo "Title - Degree" 
 
   - Datos Inciales:
 
@@ -707,15 +658,13 @@ Los servicios desplegados son:
     - Dockerfile: **DockerfileTDNIN**
     - Nombre imagen docker: **simulator-importer-researcher-title:1.0**
 
-  
-
   Se crean 6 imagenes docker a partir de 6 Dockerfile, 2 por cada tipo de Job, una para los datos iniciales (simplificados a una sola propiedad y sin dependencias entre ellos, y otro para datos completos)
 
   El contenido de los DockerFile:
 
   - DockerfileACIN
 
-    ````dockerfile
+    ```dockerfile
     ARG job_name
     
     FROM umansioacr.azurecr.io/input/simulator-importer
@@ -730,29 +679,26 @@ Los servicios desplegados son:
     ENV SPRING_BATCH_INITIALIZE_SCHEMA always
     ADD data /data
     ENTRYPOINT ["java", "-jar", "-Dspring.batch.job.names=academicInstitutionJob","/opt/app/app.jar"]
-    
-    ````
+    ```
 
   - DockerfileACNIN
 
-  ```dockerfile
-  ARG job_name
-  
-  FROM umansioacr.azurecr.io/input/simulator-importer
-  ENV APP_PERSISTENCE_DATASOURCE_USERNAME hercules
-  ENV APP_PERSISTENCE_DATASOURCE_PASSWORD h3rcul3s
-  ENV APP_PERSISTENCE_DATASOURCE_URL jdbc:mysql://herc-iz-bd-desa.atica.um.es:3306/asio_jobs?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8
-  ENV APP_KAFKA_INPUT_TOPIC_NAME input-data
-  ENV APP_KAFKA_CREATE_TOPICS true
-  ENV SPRING_KAFKA_BOOTSTRAP_SERVERS herc-iz-bd-desa.atica.um.es:29092
-  ENV APP_DATA_PATH "/data"
-  ENV APP_DATA_INITIAL false
-  ENV SPRING_BATCH_INITIALIZE_SCHEMA always
-  ADD data /data
-  ENTRYPOINT ["java", "-jar", "-Dspring.batch.job.names=academicInstitutionJob","/opt/app/app.jar"]
-  ```
-
-  
+    ```dockerfile
+    ARG job_name
+    
+    FROM umansioacr.azurecr.io/input/simulator-importer
+    ENV APP_PERSISTENCE_DATASOURCE_USERNAME hercules
+    ENV APP_PERSISTENCE_DATASOURCE_PASSWORD h3rcul3s
+    ENV APP_PERSISTENCE_DATASOURCE_URL jdbc:mysql://herc-iz-bd-desa.atica.um.es:3306/asio_jobs?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8
+    ENV APP_KAFKA_INPUT_TOPIC_NAME input-data
+    ENV APP_KAFKA_CREATE_TOPICS true
+    ENV SPRING_KAFKA_BOOTSTRAP_SERVERS herc-iz-bd-desa.atica.um.es:29092
+    ENV APP_DATA_PATH "/data"
+    ENV APP_DATA_INITIAL false
+    ENV SPRING_BATCH_INITIALIZE_SCHEMA always
+    ADD data /data
+    ENTRYPOINT ["java", "-jar", "-Dspring.batch.job.names=academicInstitutionJob","/opt/app/app.jar"]
+    ```
 
   - DockerfileREIN
 
@@ -772,8 +718,6 @@ Los servicios desplegados son:
     ADD data /data
     ENTRYPOINT ["java", "-jar", "-Dspring.batch.job.names=researcherJob","/opt/app/app.jar"]
     ```
-
-    
 
   - DockerfileRENIN
 
@@ -813,52 +757,50 @@ Los servicios desplegados son:
     ENTRYPOINT ["java", "-jar", "-Dspring.batch.job.names=titleDegreeJob","/opt/app/app.jar"]
     ```
 
-    
-
   - DockerfileTDNIN
 
-  ```
-  ARG job_name
-  
-  FROM umansioacr.azurecr.io/input/simulator-importer
-  ENV APP_PERSISTENCE_DATASOURCE_USERNAME hercules
-  ENV APP_PERSISTENCE_DATASOURCE_PASSWORD h3rcul3s
-  ENV APP_PERSISTENCE_DATASOURCE_URL jdbc:mysql://herc-iz-bd-desa.atica.um.es:3306/asio_jobs?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8
-  ENV APP_KAFKA_INPUT_TOPIC_NAME input-data
-  ENV APP_KAFKA_CREATE_TOPICS true
-  ENV SPRING_KAFKA_BOOTSTRAP_SERVERS herc-iz-bd-desa.atica.um.es:29092
-  ENV APP_DATA_PATH "/data"
-  ENV APP_DATA_INITIAL false
-  ENV SPRING_BATCH_INITIALIZE_SCHEMA always
-  ADD data /data
-  ENTRYPOINT ["java", "-jar", "-Dspring.batch.job.names=titleDegreeJob","/opt/app/app.jar"]
-  ```
+    ```
+    ARG job_name
+    
+    FROM umansioacr.azurecr.io/input/simulator-importer
+    ENV APP_PERSISTENCE_DATASOURCE_USERNAME hercules
+    ENV APP_PERSISTENCE_DATASOURCE_PASSWORD h3rcul3s
+    ENV APP_PERSISTENCE_DATASOURCE_URL jdbc:mysql://herc-iz-bd-desa.atica.um.es:3306/asio_jobs?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8
+    ENV APP_KAFKA_INPUT_TOPIC_NAME input-data
+    ENV APP_KAFKA_CREATE_TOPICS true
+    ENV SPRING_KAFKA_BOOTSTRAP_SERVERS herc-iz-bd-desa.atica.um.es:29092
+    ENV APP_DATA_PATH "/data"
+    ENV APP_DATA_INITIAL false
+    ENV SPRING_BATCH_INITIALIZE_SCHEMA always
+    ADD data /data
+    ENTRYPOINT ["java", "-jar", "-Dspring.batch.job.names=titleDegreeJob","/opt/app/app.jar"]
+    ```
 
   Se crean 3 Scripts (uno por proceso) en la ruta deploy/scripts, para invocar el lanzamiento por cron
 
   - launch_academic.sh
 
-  ```bash
-  #!/bin/bash
-  docker container prune --filter "until=1h" -f
-  docker run simulator-importer-academic-init:1.0
-  ```
+    ```bash
+    #!/bin/bash
+    docker container prune --filter "until=1h" -f
+    docker run simulator-importer-academic-init:1.0
+    ```
 
   - launch_title_degree.sh
 
-  ```bash
-  #!/bin/bash
-  docker container prune --filter "until=1h" -f
-  docker run simulator-importer-researcher-title-init:1.0
-  ```
+    ```bash
+    #!/bin/bash
+    docker container prune --filter "until=1h" -f
+    docker run simulator-importer-researcher-title-init:1.0
+    ```
 
   * launch_researcher.sh
 
-  ```bash
-  #!/bin/bash
-  docker container prune --filter "until=1h" -f
-  docker run simulator-importer-researcher-init:1.0
-  ```
+    ```bash
+    #!/bin/bash
+    docker container prune --filter "until=1h" -f
+    docker run simulator-importer-researcher-init:1.0
+    ```
 
   Se configura en cron para lanzar los jobs cada 5 min
 
@@ -867,8 +809,6 @@ Los servicios desplegados son:
   1,6,11,16,21,26,31,36,41,46,51,56 * * * * /home/herculesizertis/deploy/scripts/launch_title_degree.sh
   2,7,12,17,22,27,32,37,42,47,52,57 * * * * /home/herculesizertis/deploy/scripts/launch_researcher.sh
   ```
-
-  
 
 #### Anexo
 
@@ -882,40 +822,26 @@ Para conectar con la instancia de wikibase en el puerto 8181, es necesario estab
 
 1. Establecer conexión VPN con UM usando credenciales
 
-   
-
    ![vpn](data:image/png;base64,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)
 
-   
-
 2. Establecer túnel SSH con putty
+  - Crear sesión con Putty
 
-   - Crear sesión con Putty
+    ![sesion](https://i.ibb.co/qMFrwVv/sesion.png)
 
-     
+  - Añadir en la sesión la public key facilitada por la UM para el acceso
 
-     ![sesion](https://i.ibb.co/qMFrwVv/sesion.png)
+    ![public-key](https://i.ibb.co/GdTdDKD/public-key.png)
 
-   - Añadir en la sesión la public key facilitada por la UM para el acceso
+  - Crear tunel. En **Source Port** ponemos el puerto que vamos a utilizar para el túnel (por ejemplo el 8081), **destination** lo dejamos en blanco y en las opciones de abajo lo ponemos en **Dynamic** y en **AUTO**. Y luego seleccionamos ADD (para añadir la configuración)
 
-     ![public-key](https://i.ibb.co/GdTdDKD/public-key.png)
-
-   - Crear tunel. En **Source Port** ponemos el puerto que vamos a utilizar para el túnel (por ejemplo el 8081), **destination** lo dejamos en blanco y en las opciones de abajo lo ponemos en **Dynamic** y en **AUTO**. Y luego seleccionamos ADD (para añadir la configuración)
-
-     ![tunel](https://www.redeszone.net/app/uploads-redeszone.net/manual_tunel_ssh_2.png)
-
-     
+    ![tunel](https://www.redeszone.net/app/uploads-redeszone.net/manual_tunel_ssh_2.png)
 
    - Conectarnos al servidor ssh
 
-   
-
-   ![abrir sesión](https://i.ibb.co/YBsspGH/abrir-Sesion.png)
-
-   
+     ![abrir sesión](https://i.ibb.co/YBsspGH/abrir-Sesion.png)
 
    - Configurar navegador (firefox)
-
      - Opciones, Avanzado, Red 
 
        ![img](https://www.redeszone.net/content/uploads/manual_tunel_ssh_5.png)
@@ -927,7 +853,3 @@ Para conectar con la instancia de wikibase en el puerto 8181, es necesario estab
      - Comprobar
 
        ![wikibase1](https://i.ibb.co/jH6tfKm/wiki.png)
-
-     
-
-
