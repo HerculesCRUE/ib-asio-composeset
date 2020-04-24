@@ -1,0 +1,33 @@
+version: '3.7'
+
+services:
+
+  # Graylog: https://hub.docker.com/r/graylog/graylog/
+  graylog:
+    environment:
+      - GRAYLOG_MONGODB_URI=mongodb://app:password123@host.docker.internal:27017/graylog
+      - GRAYLOG_ELASTICSEARCH_HOSTS=http://host.docker.internal:9200
+
+  # input-processor
+  input-processor:
+    environment: 
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=host.docker.internal:29092
+      - SPRING_KAFKA_CONSUMER_BOOTSTRAP_SERVERS=host.docker.internal:29092
+      - APP_PERSISTENCE_DATASOURCE_URL=jdbc:mysql://host.docker.internal:3306/input?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&createDatabaseIfNotExist=true
+
+  # management-system
+  management-system:
+    environment: 
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=host.docker.internal:29092
+      - SPRING_KAFKA_CONSUMER_BOOTSTRAP_SERVERS=host.docker.internal:29092
+  
+  # uris-generator
+  uris-generator:
+    environment: 
+      - APP_PERSISTENCE_DATASOURCE_URL=jdbc:mysql://host.docker.internal:3306/uris?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&createDatabaseIfNotExist=true
+  
+  # trellis-event-processor
+  trellis-event-processor:
+    environment: 
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=host.docker.internal:29092
+      - SPRING_KAFKA_CONSUMER_BOOTSTRAP_SERVERS=host.docker.internal:29092

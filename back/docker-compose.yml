@@ -1,0 +1,104 @@
+version: '3.7'
+
+services:
+
+  # Graylog: https://hub.docker.com/r/graylog/graylog/
+  graylog:
+    image: graylog/graylog:3.2
+    restart: always
+    environment:
+      # CHANGE ME (must be at least 16 characters)!
+      - GRAYLOG_PASSWORD_SECRET=mycustompepper01
+      # Password: admin uoFXoV03%ZMo, asio YlxC^#K!%%2V
+      - GRAYLOG_ROOT_PASSWORD_SHA2=86b1d465c6d2b816fa6ac9c59d9f48487335d66ecffb016d4b9cc207c850e426
+      - GRAYLOG_HTTP_BIND_ADDRESS=0.0.0.0:9000
+      - GRAYLOG_HTTP_EXTERNAL_URI=http://herc-iz-back-desa.atica.um.es:9000/
+      - GRAYLOG_SERVER_JAVA_OPTS=-Xms512m -Xmx512m -XX:NewRatio=1 -XX:MaxMetaspaceSize=256m -server -XX:+ResizeTLAB -XX:+UseConcMarkSweepGC -XX:+CMSConcurrentMTEnabled -XX:+CMSClassUnloadingEnabled -XX:+UseParNewGC -XX:-OmitStackTraceInFastThrow
+      - GRAYLOG_MONGODB_URI=mongodb://app:password123@herc-iz-bd-desa.atica.um.es:27017/graylog
+      - GRAYLOG_ELASTICSEARCH_HOSTS=http://herc-iz-bd-desa.atica.um.es:9200
+    ports:
+      # Graylog web interface and REST API
+      - 9000:9000
+      # Syslog TCP
+      - 514:514
+      # Syslog UDP
+      - 514:514/udp
+      # GELF TCP
+      - 12201:12201
+      # GELF UDP
+      - 12201:12201/udp
+
+  # Trellis
+  trellis:
+    image: trellisldp/trellis:0.11.1
+    ports:
+      - 80:8080
+
+  # input-processor
+  input-processor:
+    image: umansioacr.azurecr.io/input/input-processor:1.0-SNAPSHOT-26
+    restart: always
+    env_file: 
+      - ./env/global.env
+      - ./env/global-api.env
+      - ./env/input-processor.env
+    expose: 
+      - "9321"
+      - "8080"
+    depends_on: 
+      - graylog
+
+  # management-system
+  management-system:
+    image: umansioacr.azurecr.io/event-management/management-system:1.0-SNAPSHOT-33
+    restart: always
+    env_file: 
+      - ./env/global.env
+      - ./env/management-system.env
+    expose: 
+      - "9321"
+    depends_on: 
+      - uris-generator
+      - graylog
+  
+  # uris-generator
+  uris-generator:
+    image: umansioacr.azurecr.io/event-management/uris-generator:1.0-SNAPSHOT-5
+    restart: always
+    env_file: 
+      - ./env/global.env
+      - ./env/global-api.env
+      - ./env/uris-generator.env
+    expose: 
+      - "9321"
+      - "8080"
+    depends_on: 
+      - graylog
+  
+  # trellis-event-processor
+  trellis-event-processor:
+    image: umansioacr.azurecr.io/event-management/event-processor:1.0-SNAPSHOT-10
+    restart: always
+    env_file: 
+      - ./env/global.env
+      - ./env/trellis-event-processor.env
+    expose: 
+      - "9321"
+    depends_on: 
+      - trellis-storage-adapter
+      - graylog
+    
+  # trellis-storage-adapter
+  trellis-storage-adapter:
+    image: umansioacr.azurecr.io/event-management/triples-storage-adapter:1.0-SNAPSHOT-9
+    restart: always
+    env_file: 
+      - ./env/global.env
+      - ./env/global-api.env
+      - ./env/trellis-storage-adapter.env
+    expose: 
+      - "9321"
+      - "8080"
+    depends_on: 
+      - trellis
+      - graylog

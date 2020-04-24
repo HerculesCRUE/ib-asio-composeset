@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  # dataset-importer batch
+  dataset-importer:
+    image: umansioacr.azurecr.io/input/dataset-importer:1.0-SNAPSHOT-23
+    restart: "no"
+    volumes: 
+      - ./dataset:/dataset
+    env_file: 
+      - ./env/global.env
+      - ./env/global-importer.env
+      - ./env/dataset-importer.env
