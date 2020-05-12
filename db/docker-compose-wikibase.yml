@@ -1,0 +1,41 @@
+version: '3.7'
+
+services:
+
+  # Wikibase AS Elasticsearch
+  wiki-as-elasticsearch:
+    image: wikibase/elasticsearch:6.5.4-extra
+    restart: unless-stopped
+    ports: 
+    - 9201:9200
+    - 9301:9300
+    environment:
+      discovery.type: single-node
+      ES_JAVA_OPTS: "-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - wikibase-as:/usr/share/elasticsearch/data
+  
+  # Wikibase IO Elasticsearch
+  wiki-io-elasticsearch:
+    image: wikibase/elasticsearch:6.5.4-extra
+    restart: unless-stopped
+    ports: 
+    - 9202:9200
+    - 9302:9300
+    environment:
+      discovery.type: single-node
+      ES_JAVA_OPTS: "-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - wikibase-io:/usr/share/elasticsearch/data
+
+volumes:
+  wikibase-as:
+  wikibase-io:

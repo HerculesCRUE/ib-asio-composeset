@@ -36,6 +36,8 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+      # Init databases
+      - ./mariadb/01.create_schemas.sql:/docker-entrypoint-initdb.d/01.create_schemas.sql
     environment:
       # MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
       MYSQL_ROOT_PASSWORD: "1z3rt1s"
@@ -62,7 +64,7 @@ services:
       - MONGODB_DATABASE=graylog
       - MONGODB_REPLICA_SET_MODE=primary
       - MONGODB_REPLICA_SET_KEY=1234567890
-      - MONGODB_ADVERTISED_HOSTNAME=herc-iz-bd-desa.atica.um.es
+      # - MONGODB_ADVERTISED_HOSTNAME=herc-iz-bd-desa.atica.um.es
 
   ## Elasticsearch
   elasticsearch:
@@ -88,6 +90,20 @@ services:
       JVM_OPTS: -Xms16M -Xmx48M -Xss180K -XX:-TieredCompilation -XX:+UseStringDeduplication -noverify
     depends_on:
       - kafka
+  
+  #fuseki
+  fuseki:
+    # image: stain/jena-fuseki:3.14.0
+    image: umansioacr.azurecr.io/sparql/jena-fuseki:3.14.0
+    restart: always
+    environment:
+      - ADMIN_PASSWORD=pw123
+    ports:
+      - "3030:3030"
+    volumes:
+      - fuseki-data:/fuseki/databases/trellis
+      - fuseki-backup:/fuseki/databases/backups
+      - ./fuseki/config.ttl:/fuseki/config.ttl
 
 volumes:
   zookeeper_data:

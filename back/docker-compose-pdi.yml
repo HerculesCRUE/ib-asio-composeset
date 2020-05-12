@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+
+  pdi:
+    image: umansioacr.azurecr.io/etl/pdi:9.0
+    restart: always
+    ports:
+      - "8080:8080"
+    volumes: 
+      - /home/herculesizertis/pdi/repositories:/pentaho-di/repositories
+      - ./pdi/kettle.properties:/pentaho-di/.kettle/kettle.properties
+    environment: 
+      - CARTE_NAME=master1
+      - CARTE_HOSTNAME=localhost
+      - CARTE_USER=asioetl
+      - CARTE_PASSWORD=asioetl
+      - REPOSITORY_NAME=ASIO-UM
+      - REPOSITORY_BASE_DIRECTORY=/pentaho-di/repositories/asio-um/project
+      - TZ=Europe/Madrid

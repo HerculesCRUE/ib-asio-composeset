@@ -163,9 +163,7 @@ sudo sysctl -w vm.max_map_count=262144
 
 ## Despliegue  
 
-Se disponen
-
-En una primera fase se desplegará todo lo necesario para la aplicación en las máquinas de base de datos y back.
+Se indica a continuación los elementos desplegados por cada máquina.
 
 ### Máquina base de datos herc-iz-bd-desa.atica.um.es
 
@@ -195,6 +193,18 @@ La máquina de base de datos será la encargada de alojar todo lo que se refiere
   * Nombre del servicio: kafdrop
   * Puertos: 19000
   * Descripción: Monitor de Kafka
+* **Fuseki**
+  * Nombre del servicio: jena-fuseki
+  * Puertos: 3030
+  * Descripción: Fuseki
+* **Wikibase Elasticsearch AS**
+  * Nombre del servicio: wiki-as-elasticsearch
+  * Puertos: 9202
+  * Descripción: Elasticsearch para Wikibase Arquitectura Semántica
+* **Wikibase Elasticsearch IO**
+  * Nombre del servicio: wiki-io-elasticsearch
+  * Puertos: 9202
+  * Descripción: Elasticsearch para Wikibase Infraestructura Ontológica
 
 ### Máquina back herc-iz-back-desa.atica.um.es
 
@@ -204,10 +214,6 @@ La máquina de back será la encargada de alojar las aplicaciones y los procesos
   * Nombre del servicio: graylog
   * Puertos: 9000
   * Descripción: Servicio de monitorización
-* **Trellis**
-  * Nombre del servicio: trellis
-  * Puertos: 80
-  * Descripción: Linked Data Platform (LDP)
 * **Input Processor**
   * Nombre del servicio: input-processor
   * Puertos: N/A
@@ -220,20 +226,36 @@ La máquina de back será la encargada de alojar las aplicaciones y los procesos
   * Nombre del servicio: uris-generator
   * Puertos: N/A
   * Descripción: Generador de URIs
+* **Discovery**
+  * Nombre del servicio: discovery
+  * Puertos: N/A
+  * Descripción: Librería de descubrimiento
 * **Trellis event processor**
   * Nombre del servicio: trellis-event-processor
   * Puertos: N/A
   * Descripción: Procesador de eventos para Trellis
-* **Trellis storage adatper**
+* **Trellis storage adapter**
   * Nombre del servicio: trellis-storage-adapter
   * Puertos: N/A
   * Descripción: Adaptador para almacenamiento en Trellis
+* **Wikibase event processor**
+  * Nombre del servicio: wikibase-event-processor
+  * Puertos: N/A
+  * Descripción: Procesador de eventos para Wikibase
+* **Wikibase storage adapter**
+  * Nombre del servicio: wikibase-storage-adapter
+  * Puertos: N/A
+  * Descripción: Adaptador para almacenamiento en Wikibase
+* **PDI**
+  * Nombre del servicio: pdi
+  * Puertos: 8080
+  * Descripción: Pentaho Data Integration para proceso de transformación de datos ETL
 
 Además se configuran los siguientes procesos batch vía crontab
 
 * **Dataset importer**
   * Nombre del servicio: dataset-importer
-  * Cron expression: */1 * * * *
+  * Cron expression: */5 * * * *
   * Descripción: Importador de dataset de UM
 
 ####  Configuración de procesos batch
@@ -251,6 +273,27 @@ Por ejemplo, en caso de querer ejecutar cada 5 minutos:
 ```crontab
 */5 * * * * cd /home/herculesizertis/deploy/scripts && ./launch_dataset_importer.sh >/dev/null 2>&1
 ```
+
+### Máquina front herc-iz-front-desa.atica.um.es
+
+La máquina de front será la encargada de alojar las aplicaciones de frontal. Los servicios desplegados son:
+
+* **Trellis**
+  * Nombre del servicio: trellis
+  * Puertos: 80
+  * Descripción: Linked Data Platform (LDP)
+* **Wikibase AS**
+  * Nombre del servicio: wikibase
+  * Puertos: 8181, 8282, 9191
+  * Descripción: Wikibase Arquitectura Semántica
+* **Wikibase IO**
+  * Nombre del servicio: wikibase
+  * Puertos: 18181, 18282, 19191
+  * Descripción: Wikibase Infraestructura Ontológica
+* **Keycloak**
+  * Nombre del servicio: keycloak
+  * Puertos: 8080
+  * Descripción: Keycloak
 
 ## Anexo
 
@@ -270,8 +313,14 @@ Los servicios desplegados solamente son visibles desde las máquinas de la red, 
   * **MariaDB**: 
     * Túnel SSH: 3306 -> herc-iz-bd-desa.atica.um.es:3306
   * **Trellis**:
-    * Túnel SSH: 80 -> herc-iz-back-desa.atica.um.es:80
-    * Acceso desde navegador: http://herc-iz-back-desa.atica.um.es/
+    * Túnel SSH: 80 -> herc-iz-front-desa.atica.um.es:80
+    * Acceso desde navegador: http://herc-iz-front-desa.atica.um.es/
+  * **Wikibase AS**:
+    * Túnel SSH: 8181 -> herc-iz-front-desa.atica.um.es:8181
+    * Acceso desde navegador: http://herc-iz-front-desa.atica.um.es:8181/
+  * **Wikibase IO**:
+    * Túnel SSH: 18181 -> herc-iz-front-desa.atica.um.es:18181
+    * Acceso desde navegador: http://herc-iz-front-desa.atica.um.es:18181/
   * **Graylog**:
     * Túnel SSH: 9000 -> herc-iz-back-desa.atica.um.es:9000
     * Acceso desde navegador: http://herc-iz-back-desa.atica.um.es:9000/

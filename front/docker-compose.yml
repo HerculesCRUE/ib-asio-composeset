@@ -1,0 +1,44 @@
+version: '3.7'
+
+services:
+
+  # Trellis
+  trellis:
+    image: umansioacr.azurecr.io/ldp/asio-ldp:1.0-SNAPSHOT-24
+    ports:
+      - 80:8080
+    environment: 
+      - ASIO_LDP_CONFIG_FILE=/opt/trellis/conf/config.yml
+      - JAVA_OPTS=-Dtrellis.webac.default-acl-location=org/trellisldp/webac/nonSecuredAcl.ttl
+    volumes: 
+      - trellis_data:/opt/trellis/data
+      - ./trellis/config.yml:/opt/trellis/conf/config.yml
+      - ./trellis/users.auth:/opt/trellis/etc/users.auth
+    depends_on: 
+      - keycloak
+
+  # Keycloak
+  keycloak:
+    image: quay.io/keycloak/keycloak:10.0.0
+    ports: 
+      - "8080:8080"
+    environment: 
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin
+      - TZ=Europe/Madrid
+      # keycloak persistence configuration
+      - DB_VENDOR=mariadb
+      - DB_ADDR=herc-iz-bd-desa.atica.um.es
+      - DB_DATABASE=keycloak
+      - DB_USER=keycloak
+      - DB_PASSWORD=uHkSyrvUsQD&
+      - JGROUPS_DISCOVERY_PROTOCOL=JDBC_PING
+      - JGROUPS_DISCOVERY_PROPERTIES=datasource_jndi_name=java:jboss/datasources/KeycloakDS,info_writer_sleep_time=500
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+volumes: 
+  trellis_data:

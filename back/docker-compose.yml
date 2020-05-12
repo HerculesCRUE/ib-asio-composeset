@@ -28,15 +28,9 @@ services:
       # GELF UDP
       - 12201:12201/udp
 
-  # Trellis
-  trellis:
-    image: trellisldp/trellis:0.11.1
-    ports:
-      - 80:8080
-
   # input-processor
   input-processor:
-    image: umansioacr.azurecr.io/input/input-processor:1.0-SNAPSHOT-27
+    image: umansioacr.azurecr.io/input/input-processor:1.0-SNAPSHOT-31
     restart: always
     env_file: 
       - ./env/global.env
@@ -50,7 +44,7 @@ services:
 
   # management-system
   management-system:
-    image: umansioacr.azurecr.io/event-management/management-system:1.0-SNAPSHOT-34
+    image: umansioacr.azurecr.io/event-management/management-system:1.0-SNAPSHOT-37
     restart: always
     env_file: 
       - ./env/global.env
@@ -63,7 +57,7 @@ services:
   
   # uris-generator
   uris-generator:
-    image: umansioacr.azurecr.io/event-management/uris-generator:1.0-SNAPSHOT-5
+    image: umansioacr.azurecr.io/event-management/uris-generator:1.0-SNAPSHOT-8
     restart: always
     env_file: 
       - ./env/global.env
@@ -74,10 +68,22 @@ services:
       - "8080"
     depends_on: 
       - graylog
+
+  # discovery
+  discovery:
+    image: umansioacr.azurecr.io/event-management/discovery:1.0-SNAPSHOT-5
+    restart: always
+    env_file: 
+      - ./env/global.env
+      - ./env/discovery.env
+    expose: 
+      - "9321"
+    depends_on: 
+      - graylog
   
   # trellis-event-processor
   trellis-event-processor:
-    image: umansioacr.azurecr.io/event-management/event-processor:1.0-SNAPSHOT-10
+    image: umansioacr.azurecr.io/event-management/event-processor:1.0-SNAPSHOT-14
     restart: always
     env_file: 
       - ./env/global.env
@@ -90,7 +96,7 @@ services:
     
   # trellis-storage-adapter
   trellis-storage-adapter:
-    image: umansioacr.azurecr.io/event-management/triples-storage-adapter:1.0-SNAPSHOT-10
+    image: umansioacr.azurecr.io/event-management/triples-storage-adapter:1.0-SNAPSHOT-16
     restart: always
     env_file: 
       - ./env/global.env
@@ -100,5 +106,32 @@ services:
       - "9321"
       - "8080"
     depends_on: 
-      - trellis
+      # - trellis
+      - graylog
+
+  # wikibase-event-processor
+  wikibase-event-processor:
+    image: umansioacr.azurecr.io/event-management/event-processor:1.0-SNAPSHOT-14
+    restart: always
+    env_file: 
+      - ./env/global.env
+      - ./env/wikibase-event-processor.env
+    expose: 
+      - "9321"
+    depends_on: 
+      - wikibase-storage-adapter
+      - graylog
+
+  # wikibase-storage-adapter
+  wikibase-storage-adapter:
+    image: umansioacr.azurecr.io/event-management/triples-storage-adapter:1.0-SNAPSHOT-16
+    restart: always
+    env_file: 
+      - ./env/global.env
+      - ./env/global-api.env
+      - ./env/wikibase-storage-adapter.env
+    expose: 
+      - "9321"
+      - "8080"
+    depends_on: 
       - graylog
