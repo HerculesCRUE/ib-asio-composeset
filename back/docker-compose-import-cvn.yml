@@ -3,7 +3,7 @@ version: '3.7'
 services:
   # dataset-importer batch
   cvn-importer:
-    image: umansioacr.azurecr.io/input/dataset-importer:1.0-SNAPSHOT-26
+    image: umansioacr.azurecr.io/input/dataset-importer:1.0-SNAPSHOT-29
     restart: "no"
     env_file: 
       - ./env/global.env
