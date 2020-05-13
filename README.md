@@ -257,6 +257,10 @@ Además se configuran los siguientes procesos batch vía crontab
   * Nombre del servicio: dataset-importer
   * Cron expression: */5 * * * *
   * Descripción: Importador de dataset de UM
+* **CVN importer**
+  * Nombre del servicio: cvn-importer
+  * Cron expression: */10 * * * *
+  * Descripción: Importador de CVN
 
 ####  Configuración de procesos batch
 
@@ -272,6 +276,8 @@ Por ejemplo, en caso de querer ejecutar cada 5 minutos:
 
 ```crontab
 */5 * * * * cd /home/herculesizertis/deploy/scripts && ./launch_dataset_importer.sh >/dev/null 2>&1
+*/10 * * * * cd /home/herculesizertis/deploy/scripts && ./launch_cvn_importer.sh >/dev/null 2>&1
+
 ```
 
 ### Máquina front herc-iz-front-desa.atica.um.es
