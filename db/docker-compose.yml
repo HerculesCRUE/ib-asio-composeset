@@ -25,6 +25,7 @@ services:
       - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,PLAINTEXT_HOST://:29092
       - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092,PLAINTEXT_HOST://herc-iz-bd-desa.atica.um.es:29092
+      - KAFKA_MESSAGE_MAX_BYTES=10000000
     depends_on:
       - zookeeper
   
@@ -87,7 +88,7 @@ services:
       - 19000:9000
     environment:
       KAFKA_BROKERCONNECT: kafka:9092
-      JVM_OPTS: -Xms16M -Xmx48M -Xss180K -XX:-TieredCompilation -XX:+UseStringDeduplication -noverify
+      JVM_OPTS: -Xms16M -Xmx128M -Xss180K -XX:-TieredCompilation -XX:+UseStringDeduplication -noverify
     depends_on:
       - kafka
   
