@@ -13,7 +13,7 @@ services:
       - GRAYLOG_ROOT_PASSWORD_SHA2=86b1d465c6d2b816fa6ac9c59d9f48487335d66ecffb016d4b9cc207c850e426
       - GRAYLOG_HTTP_BIND_ADDRESS=0.0.0.0:9000
       - GRAYLOG_HTTP_EXTERNAL_URI=http://herc-iz-back-desa.atica.um.es:9000/
-      - GRAYLOG_SERVER_JAVA_OPTS=-Xms512m -Xmx512m -XX:NewRatio=1 -XX:MaxMetaspaceSize=256m -server -XX:+ResizeTLAB -XX:+UseConcMarkSweepGC -XX:+CMSConcurrentMTEnabled -XX:+CMSClassUnloadingEnabled -XX:+UseParNewGC -XX:-OmitStackTraceInFastThrow
+      - GRAYLOG_SERVER_JAVA_OPTS=-Xms512m -Xmx2g -XX:NewRatio=1 -XX:MaxMetaspaceSize=256m -server -XX:+ResizeTLAB -XX:+UseConcMarkSweepGC -XX:+CMSConcurrentMTEnabled -XX:+CMSClassUnloadingEnabled -XX:+UseParNewGC -XX:-OmitStackTraceInFastThrow
       - GRAYLOG_MONGODB_URI=mongodb://app:password123@herc-iz-bd-desa.atica.um.es:27017/graylog
       - GRAYLOG_ELASTICSEARCH_HOSTS=http://herc-iz-bd-desa.atica.um.es:9200
     ports:
@@ -44,7 +44,7 @@ services:
 
   # management-system
   management-system:
-    image: umansioacr.azurecr.io/event-management/management-system:1.0-SNAPSHOT-40
+    image: umansioacr.azurecr.io/event-management/management-system:1.0-SNAPSHOT-41
     restart: always
     env_file: 
       - ./env/global.env
