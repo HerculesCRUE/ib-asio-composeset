@@ -96,7 +96,7 @@ services:
     
   # trellis-storage-adapter
   trellis-storage-adapter:
-    image: umansioacr.azurecr.io/event-management/triples-storage-adapter:1.0-SNAPSHOT-20
+    image: umansioacr.azurecr.io/event-management/triples-storage-adapter:1.0-SNAPSHOT-21
     restart: always
     env_file: 
       - ./env/global.env
@@ -124,7 +124,7 @@ services:
 
   # wikibase-storage-adapter
   wikibase-storage-adapter:
-    image: umansioacr.azurecr.io/event-management/triples-storage-adapter:1.0-SNAPSHOT-20
+    image: umansioacr.azurecr.io/event-management/triples-storage-adapter:1.0-SNAPSHOT-21
     restart: always
     env_file: 
       - ./env/global.env
