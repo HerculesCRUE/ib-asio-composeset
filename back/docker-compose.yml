@@ -30,7 +30,7 @@ services:
 
   # input-processor
   input-processor:
-    image: umansioacr.azurecr.io/input/input-processor:1.0-SNAPSHOT-34
+    image: umansioacr.azurecr.io/input/input-processor:1.0-SNAPSHOT-35
     restart: always
     env_file: 
       - ./env/global.env
