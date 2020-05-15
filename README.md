@@ -292,10 +292,6 @@ La máquina de front será la encargada de alojar las aplicaciones de frontal. L
   * Nombre del servicio: wikibase
   * Puertos: 8181, 8282, 9191
   * Descripción: Wikibase Arquitectura Semántica
-* **Wikibase IO**
-  * Nombre del servicio: wikibase
-  * Puertos: 18181, 18282, 19191
-  * Descripción: Wikibase Infraestructura Ontológica
 * **Keycloak**
   * Nombre del servicio: keycloak
   * Puertos: 8080
@@ -316,22 +312,44 @@ Los servicios desplegados solamente son visibles desde las máquinas de la red, 
   * **Kafdrop**: 
     * Túnel SSH: 19000 -> herc-iz-bd-desa.atica.um.es:19000
     * Acceso desde navegador: http://herc-iz-bd-desa.atica.um.es:19000/
+    * Autenticación: no requiere
   * **MariaDB**: 
     * Túnel SSH: 3306 -> herc-iz-bd-desa.atica.um.es:3306
+    * Autenticación: usuarios de base de datos
   * **Trellis**:
     * Túnel SSH: 80 -> herc-iz-front-desa.atica.um.es:80
     * Acceso desde navegador: http://herc-iz-front-desa.atica.um.es/
+    * Autenticación: configurado WebAC, posible acceso con autenticación básica o token JWT obtenido de Keycloak
   * **Wikibase AS**:
     * Túnel SSH: 8181 -> herc-iz-front-desa.atica.um.es:8181
     * Acceso desde navegador: http://herc-iz-front-desa.atica.um.es:8181/
-  * **Wikibase IO**:
-    * Túnel SSH: 18181 -> herc-iz-front-desa.atica.um.es:18181
-    * Acceso desde navegador: http://herc-iz-front-desa.atica.um.es:18181/
+    * Autenticación: no es necesario para la visualización de datos
   * **Graylog**:
     * Túnel SSH: 9000 -> herc-iz-back-desa.atica.um.es:9000
     * Acceso desde navegador: http://herc-iz-back-desa.atica.um.es:9000/
+    * Autenticación: es precisa, configurado usuario "admin"
+  * **Keycloak**:
+    * Tunel SSH: 8443 -> herc-iz-front-desa.atica.um.es:8443
+    * Acceso desde navegador: https://herc-iz-front-desa.atica.um.es:8443
+    * Autenticación: es necesaria
 
-##### Windows
+#### Obtención de token JWT
+
+Para obtener el token JWT desde Keycloak, es puede hacer con Postman configurando los siguientes parámetros:
+
+* Grant type: Authorization Code
+* Callback URL: http://localhost:8082
+* Auth URL: https://herc-iz-front-desa.atica.um.es:8443/auth/realms/asio/protocol/openid-connect/auth
+* Access Token URL: https://herc-iz-front-desa.atica.um.es:8443/auth/realms/asio/protocol/openid-connect/token
+* Client ID: trellis
+* Client Secret: 7c950207-b369-4a33-bbf0-fe2c6ca59e9a
+* Scope: openid
+* State: 12345
+* Client Authentication: Send as Basic Auth header
+
+Una vez configurados estos datos, al obtener el token se pedirán los datos del usuario y se obtendrá el token JWT que será preciso utilizar para llamar a aquellas aplicaciones que lo precisen.
+
+#### Windows
 
 Para conectar desde windows a un servicio ubicado en el puerto 8181, es necesario establecer un tunel ssh de la siguiente forma:
 
