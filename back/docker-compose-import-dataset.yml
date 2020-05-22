@@ -3,7 +3,7 @@ version: '3.7'
 services:
   # dataset-importer batch
   dataset-importer:
-    image: umansioacr.azurecr.io/input/dataset-importer:1.0-SNAPSHOT-30
+    image: umansioacr.azurecr.io/input/dataset-importer:1.0-SNAPSHOT-34
     restart: "no"
     volumes:
       - /home/herculesizertis/DatasetDemo:/dataset

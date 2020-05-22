@@ -30,7 +30,7 @@ services:
 
   # input-processor
   input-processor:
-    image: umansioacr.azurecr.io/input/input-processor:1.0-SNAPSHOT-35
+    image: umansioacr.azurecr.io/input/input-processor:1.0-SNAPSHOT-39
     restart: always
     env_file: 
       - ./env/global.env
@@ -44,7 +44,7 @@ services:
 
   # management-system
   management-system:
-    image: umansioacr.azurecr.io/event-management/management-system:1.0-SNAPSHOT-41
+    image: umansioacr.azurecr.io/event-management/management-system:1.0-SNAPSHOT-45
     restart: always
     env_file: 
       - ./env/global.env
@@ -57,7 +57,7 @@ services:
   
   # uris-generator
   uris-generator:
-    image: umansioacr.azurecr.io/event-management/uris-generator:1.0-SNAPSHOT-10
+    image: umansioacr.azurecr.io/event-management/uris-generator:1.0-SNAPSHOT-12
     restart: always
     env_file: 
       - ./env/global.env
@@ -71,7 +71,7 @@ services:
 
   # discovery
   discovery:
-    image: umansioacr.azurecr.io/event-management/discovery:1.0-SNAPSHOT-5
+    image: umansioacr.azurecr.io/event-management/discovery:1.0-SNAPSHOT-8
     restart: always
     env_file: 
       - ./env/global.env
@@ -83,7 +83,7 @@ services:
   
   # trellis-event-processor
   trellis-event-processor:
-    image: umansioacr.azurecr.io/event-management/event-processor:1.0-SNAPSHOT-16
+    image: umansioacr.azurecr.io/event-management/event-processor:1.0-SNAPSHOT-19
     restart: always
     env_file: 
       - ./env/global.env
@@ -96,7 +96,7 @@ services:
     
   # trellis-storage-adapter
   trellis-storage-adapter:
-    image: umansioacr.azurecr.io/event-management/triples-storage-adapter:1.0-SNAPSHOT-22
+    image: umansioacr.azurecr.io/event-management/triples-storage-adapter:1.0-SNAPSHOT-28
     restart: always
     env_file: 
       - ./env/global.env
@@ -111,7 +111,7 @@ services:
 
   # wikibase-event-processor
   wikibase-event-processor:
-    image: umansioacr.azurecr.io/event-management/event-processor:1.0-SNAPSHOT-16
+    image: umansioacr.azurecr.io/event-management/event-processor:1.0-SNAPSHOT-19
     restart: always
     env_file: 
       - ./env/global.env
@@ -124,7 +124,7 @@ services:
 
   # wikibase-storage-adapter
   wikibase-storage-adapter:
-    image: umansioacr.azurecr.io/event-management/triples-storage-adapter:1.0-SNAPSHOT-22
+    image: umansioacr.azurecr.io/event-management/triples-storage-adapter:1.0-SNAPSHOT-28
     restart: always
     env_file: 
       - ./env/global.env
