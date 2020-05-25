@@ -1,15 +1,15 @@
 ![](./images/logos_feder.png)
 
 
-| Entregable     | Documentaci髇 sobre el despliegue                                |
+| Entregable     | Documentaci贸n sobre el despliegue                                |
 | -------------- | ------------------------------------------------------------ |
 | Fecha          | 25/05/2020                                                   |
-| Proyecto       | [ASIO](https://www.um.es/web/hercules/proyectos/asio) (Arquitectura Sem醤tica e Infraestructura Ontol骻ica) en el marco de la iniciativa [H閞cules](https://www.um.es/web/hercules/) para la Sem醤tica de Datos de Investigaci髇 de Universidades que forma parte de [CRUE-TIC](http://www.crue.org/SitePages/ProyectoHercules.aspx) |
-| M骴ulo         | Arquitectura Sem醤tica                                                   |
+| Proyecto       | [ASIO](https://www.um.es/web/hercules/proyectos/asio) (Arquitectura Sem谩ntica e Infraestructura Ontol贸gica) en el marco de la iniciativa [H茅rcules](https://www.um.es/web/hercules/) para la Sem谩ntica de Datos de Investigaci贸n de Universidades que forma parte de [CRUE-TIC](http://www.crue.org/SitePages/ProyectoHercules.aspx) |
+| M贸dulo         | Arquitectura Sem谩ntica                                                   |
 | Tipo           | Documento                                                    |
 | Objetivo       | Despliegue en entorno de desarrollo para la Universidad de Murcia                          |
 | Estado         | 100% para el hito 1                                          |
-| Pr髕imos pasos | Actualizar de forma acorde al avance del proyecto y surjan necesidades.    
+| Pr贸ximos pasos | Actualizar de forma acorde al avance del proyecto y surjan necesidades.    
 
 
 # Despliegue en entorno de desarrollo para la Universidad de Murcia
