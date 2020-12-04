@@ -71,6 +71,18 @@ Arrancar servicio
 sudo systemctl start docker.service
 ```
 
+También es interesante modificar el driver de logging de docker para que no crezca indiscriminadamente. Para ello se modificará el fichero `/etc/docker/daemon.json`.
+
+```json
+{
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "10m",
+    "max-file": "3"
+  }
+}
+```
+
 ### Crear usuario   
 
 Crear grupo de usuario   

@@ -4,8 +4,8 @@ services:
 
   # Graylog: https://hub.docker.com/r/graylog/graylog/
   graylog:
-    image: graylog/graylog:3.2
-    restart: always
+    image: graylog/graylog:3.3
+    restart: unless-stopped
     environment:
       # CHANGE ME (must be at least 16 characters)!
       - GRAYLOG_PASSWORD_SECRET=mycustompepper01
@@ -30,8 +30,8 @@ services:
 
   # input-processor
   input-processor:
-    image: umansioacr.azurecr.io/input/input-processor:1.0-SNAPSHOT-39
-    restart: always
+    image: umansioacr.azurecr.io/input/input-processor:1.0-SNAPSHOT-57
+    restart: unless-stopped
     env_file: 
       - ./env/global.env
       - ./env/global-api.env
@@ -44,21 +44,23 @@ services:
 
   # management-system
   management-system:
-    image: umansioacr.azurecr.io/event-management/management-system:1.0-SNAPSHOT-45
-    restart: always
+    image: umansioacr.azurecr.io/event-management/management-system:1.0-SNAPSHOT-64
+    restart: unless-stopped
     env_file: 
       - ./env/global.env
+      - ./env/global-api.env
       - ./env/management-system.env
     expose: 
       - "9321"
+      - "8080"
     depends_on: 
       - uris-generator
       - graylog
   
   # uris-generator
   uris-generator:
-    image: umansioacr.azurecr.io/event-management/uris-generator:1.0-SNAPSHOT-12
-    restart: always
+    image: umansioacr.azurecr.io/event-management/uris-generator:1.1.0-33
+    restart: unless-stopped
     env_file: 
       - ./env/global.env
       - ./env/global-api.env
@@ -71,22 +73,25 @@ services:
 
   # discovery
   discovery:
-    image: umansioacr.azurecr.io/event-management/discovery:1.0-SNAPSHOT-8
-    restart: always
+    image: umansioacr.azurecr.io/event-management/discovery:1.0-SNAPSHOT-22
+    restart: unless-stopped
     env_file: 
       - ./env/global.env
+      - ./env/global-api.env
       - ./env/discovery.env
     expose: 
       - "9321"
+      - "8080"
     depends_on: 
       - graylog
   
   # trellis-event-processor
   trellis-event-processor:
-    image: umansioacr.azurecr.io/event-management/event-processor:1.0-SNAPSHOT-19
-    restart: always
+    image: umansioacr.azurecr.io/event-management/event-processor:1.0-SNAPSHOT-35
+    restart: unless-stopped
     env_file: 
       - ./env/global.env
+      - ./env/event-processor.env
       - ./env/trellis-event-processor.env
     expose: 
       - "9321"
@@ -96,11 +101,12 @@ services:
     
   # trellis-storage-adapter
   trellis-storage-adapter:
-    image: umansioacr.azurecr.io/event-management/triples-storage-adapter:1.0-SNAPSHOT-28
-    restart: always
+    image: umansioacr.azurecr.io/event-management/triples-storage-adapter:1.0-SNAPSHOT-46
+    restart: unless-stopped
     env_file: 
       - ./env/global.env
       - ./env/global-api.env
+      - ./env/storage-adapter.env
       - ./env/trellis-storage-adapter.env
     expose: 
       - "9321"
@@ -111,10 +117,11 @@ services:
 
   # wikibase-event-processor
   wikibase-event-processor:
-    image: umansioacr.azurecr.io/event-management/event-processor:1.0-SNAPSHOT-19
-    restart: always
+    image: umansioacr.azurecr.io/event-management/event-processor:1.0-SNAPSHOT-35
+    restart: unless-stopped
     env_file: 
       - ./env/global.env
+      - ./env/event-processor.env
       - ./env/wikibase-event-processor.env
     expose: 
       - "9321"
@@ -124,13 +131,28 @@ services:
 
   # wikibase-storage-adapter
   wikibase-storage-adapter:
-    image: umansioacr.azurecr.io/event-management/triples-storage-adapter:1.0-SNAPSHOT-28
-    restart: always
+    image: umansioacr.azurecr.io/event-management/triples-storage-adapter:1.0-SNAPSHOT-46
+    restart: unless-stopped
     env_file: 
       - ./env/global.env
       - ./env/global-api.env
+      - ./env/storage-adapter.env
       - ./env/wikibase-storage-adapter.env
     expose: 
+      - "9321"
+      - "8080"
+    depends_on: 
+      - graylog
+  
+  # web-publication-backend
+  web-publication-backend:
+    image: umansioacr.azurecr.io/web-publication/web-publication-backend:1.0-SNAPSHOT-18
+    restart: unless-stopped
+    env_file:
+      - ./env/global.env
+      - ./env/global-api.env
+      - ./env/web-publication-backend.env
+    expose:
       - "9321"
       - "8080"
     depends_on: 

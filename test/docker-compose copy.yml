@@ -14,7 +14,6 @@ services:
   ## Kafka
   kafka:
     image: bitnami/kafka:2.4.1
-    restart: unless-stopped
     ports:
       - 9092:9092
       - 29092:29092
@@ -54,8 +53,7 @@ services:
 
   ## Mongo DB
   mongodb:
-    image: 'bitnami/mongodb:4.4'
-    restart: unless-stopped
+    image: 'bitnami/mongodb:4.2'
     ports:
       - "27017:27017"
     volumes:
@@ -72,7 +70,6 @@ services:
   ## Elasticsearch
   elasticsearch:
     image: 'bitnami/elasticsearch:6.8.8'
-    restart: unless-stopped
     ports: 
     - 9200:9200
     - 9300:9300
@@ -85,8 +82,8 @@ services:
   
   #Kafdrop
   kafdrop:
-    image: obsidiandynamics/kafdrop:3.27.0
-    restart: unless-stopped
+    image: obsidiandynamics/kafdrop:3.24.0
+    restart: "no"
     ports:
       - 19000:9000
     environment:
@@ -99,7 +96,7 @@ services:
   fuseki:
     # image: stain/jena-fuseki:3.14.0
     image: umansioacr.azurecr.io/sparql/jena-fuseki:3.14.0
-    restart: unless-stopped
+    restart: always
     environment:
       - ADMIN_PASSWORD=pw123
     ports:
@@ -109,16 +106,6 @@ services:
       - fuseki-backup:/fuseki/databases/backups
       - ./fuseki/config.ttl:/fuseki/config.ttl
 
-  activemq:
-    image: umansioacr.azurecr.io/activemq:5.15.9
-    restart: unless-stopped
-    ports:
-      - 8161:8161
-      - 61616:61616
-    volumes:
-      - activemq_conf:/mnt/conf
-      - activemq_data:/mnt/data
-
 volumes:
   zookeeper_data:
   kafka_data:
@@ -127,5 +114,3 @@ volumes:
   es_data:
   fuseki-data:
   fuseki-backup:
-  activemq_conf:
-  activemq_data:
