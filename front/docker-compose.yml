@@ -1,30 +1,29 @@
-version: '3.7'
+version: "3.7"
 
 services:
-
   # Trellis
   trellis:
     image: umansioacr.azurecr.io/ldp/asio-ldp:1.0-SNAPSHOT-24
     restart: unless-stopped
     ports:
       - 80:8080
-    environment: 
+    environment:
       - ASIO_LDP_CONFIG_FILE=/opt/trellis/conf/config.yml
       - JAVA_OPTS=-Dtrellis.webac.default-acl-location=org/trellisldp/webac/nonSecuredAcl.ttl
-    volumes: 
+    volumes:
       - trellis_data:/opt/trellis/data
       - ./trellis/config.yml:/opt/trellis/conf/config.yml
       - ./trellis/users.auth:/opt/trellis/etc/users.auth
-    depends_on: 
+    depends_on:
       - keycloak
 
   # Keycloak
   keycloak:
     image: quay.io/keycloak/keycloak:11.0.3
     restart: unless-stopped
-    ports: 
+    ports:
       - "8080:8080"
-    environment: 
+    environment:
       - KEYCLOAK_USER=admin
       - KEYCLOAK_PASSWORD=admin
       - TZ=Europe/Madrid
@@ -41,13 +40,13 @@ services:
       interval: 30s
       timeout: 10s
       retries: 5
-  
+
   # Web Publication Service
   web-publication-service:
-    image: umansioacr.azurecr.io/web-publication/web-publication-service:1.0.0-22
+    image: umansioacr.azurecr.io/web-publication/web-publication-service:1.0.0-26
     restart: unless-stopped
     ports:
       - "81:80"
 
-volumes: 
+volumes:
   trellis_data:
