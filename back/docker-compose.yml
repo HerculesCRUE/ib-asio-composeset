@@ -100,7 +100,7 @@ services:
 
   # trellis-storage-adapter
   trellis-storage-adapter:
-    image: umansioacr.azurecr.io/event-management/triples-storage-adapter:1.0-SNAPSHOT-46
+    image: umansioacr.azurecr.io/event-management/triples-storage-adapter:1.0-SNAPSHOT-48
     restart: unless-stopped
     env_file:
       - ./env/global.env
