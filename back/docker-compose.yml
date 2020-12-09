@@ -1,7 +1,6 @@
-version: '3.7'
+version: "3.7"
 
 services:
-
   # Graylog: https://hub.docker.com/r/graylog/graylog/
   graylog:
     image: graylog/graylog:3.3
@@ -32,86 +31,86 @@ services:
   input-processor:
     image: umansioacr.azurecr.io/input/input-processor:1.0-SNAPSHOT-57
     restart: unless-stopped
-    env_file: 
+    env_file:
       - ./env/global.env
       - ./env/global-api.env
       - ./env/input-processor.env
-    expose: 
+    expose:
       - "9321"
       - "8080"
-    depends_on: 
+    depends_on:
       - graylog
 
   # management-system
   management-system:
     image: umansioacr.azurecr.io/event-management/management-system:1.0-SNAPSHOT-64
     restart: unless-stopped
-    env_file: 
+    env_file:
       - ./env/global.env
       - ./env/global-api.env
       - ./env/management-system.env
-    expose: 
+    expose:
       - "9321"
       - "8080"
-    depends_on: 
+    depends_on:
       - uris-generator
       - graylog
-  
+
   # uris-generator
   uris-generator:
     image: umansioacr.azurecr.io/event-management/uris-generator:1.1.0-33
     restart: unless-stopped
-    env_file: 
+    env_file:
       - ./env/global.env
       - ./env/global-api.env
       - ./env/uris-generator.env
-    expose: 
+    expose:
       - "9321"
       - "8080"
-    depends_on: 
+    depends_on:
       - graylog
 
   # discovery
   discovery:
     image: umansioacr.azurecr.io/event-management/discovery:1.0-SNAPSHOT-22
     restart: unless-stopped
-    env_file: 
+    env_file:
       - ./env/global.env
       - ./env/global-api.env
       - ./env/discovery.env
-    expose: 
+    expose:
       - "9321"
       - "8080"
-    depends_on: 
+    depends_on:
       - graylog
-  
+
   # trellis-event-processor
   trellis-event-processor:
     image: umansioacr.azurecr.io/event-management/event-processor:1.0-SNAPSHOT-35
     restart: unless-stopped
-    env_file: 
+    env_file:
       - ./env/global.env
       - ./env/event-processor.env
       - ./env/trellis-event-processor.env
-    expose: 
+    expose:
       - "9321"
-    depends_on: 
+    depends_on:
       - trellis-storage-adapter
       - graylog
-    
+
   # trellis-storage-adapter
   trellis-storage-adapter:
     image: umansioacr.azurecr.io/event-management/triples-storage-adapter:1.0-SNAPSHOT-46
     restart: unless-stopped
-    env_file: 
+    env_file:
       - ./env/global.env
       - ./env/global-api.env
       - ./env/storage-adapter.env
       - ./env/trellis-storage-adapter.env
-    expose: 
+    expose:
       - "9321"
       - "8080"
-    depends_on: 
+    depends_on:
       # - trellis
       - graylog
 
@@ -119,13 +118,13 @@ services:
   wikibase-event-processor:
     image: umansioacr.azurecr.io/event-management/event-processor:1.0-SNAPSHOT-35
     restart: unless-stopped
-    env_file: 
+    env_file:
       - ./env/global.env
       - ./env/event-processor.env
       - ./env/wikibase-event-processor.env
-    expose: 
+    expose:
       - "9321"
-    depends_on: 
+    depends_on:
       - wikibase-storage-adapter
       - graylog
 
@@ -133,20 +132,20 @@ services:
   wikibase-storage-adapter:
     image: umansioacr.azurecr.io/event-management/triples-storage-adapter:1.0-SNAPSHOT-46
     restart: unless-stopped
-    env_file: 
+    env_file:
       - ./env/global.env
       - ./env/global-api.env
       - ./env/storage-adapter.env
       - ./env/wikibase-storage-adapter.env
-    expose: 
+    expose:
       - "9321"
       - "8080"
-    depends_on: 
+    depends_on:
       - graylog
-  
+
   # web-publication-backend
   web-publication-backend:
-    image: umansioacr.azurecr.io/web-publication/web-publication-backend:1.0-SNAPSHOT-18
+    image: umansioacr.azurecr.io/web-publication/web-publication-backend:1.0-SNAPSHOT-20
     restart: unless-stopped
     env_file:
       - ./env/global.env
@@ -155,5 +154,5 @@ services:
     expose:
       - "9321"
       - "8080"
-    depends_on: 
+    depends_on:
       - graylog
