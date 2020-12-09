@@ -130,7 +130,7 @@ services:
 
   # wikibase-storage-adapter
   wikibase-storage-adapter:
-    image: umansioacr.azurecr.io/event-management/triples-storage-adapter:1.0-SNAPSHOT-46
+    image: umansioacr.azurecr.io/event-management/triples-storage-adapter:1.0-SNAPSHOT-48
     restart: unless-stopped
     env_file:
       - ./env/global.env
@@ -156,5 +156,5 @@ services:
   #   expose:
   #     - "9321"
   #     - "8080"
-  #   depends_on: 
+  #   depends_on:
   #     - graylog
