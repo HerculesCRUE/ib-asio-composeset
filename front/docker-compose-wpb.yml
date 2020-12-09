@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+
+  # web-publication-backend
+  web-publication-backend:
+    image: umansioacr.azurecr.io/web-publication/web-publication-backend:1.0-SNAPSHOT-20
+    restart: unless-stopped
+    env_file:
+      - ./env/global.env
+      - ./env/global-api.env
+      - ./env/web-publication-backend.env
+    ports:
+      - "8080:8080"
+    expose:
+      - "9321"
+      - "8080"

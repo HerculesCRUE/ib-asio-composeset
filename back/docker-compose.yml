@@ -144,15 +144,17 @@ services:
       - graylog
 
   # web-publication-backend
-  web-publication-backend:
-    image: umansioacr.azurecr.io/web-publication/web-publication-backend:1.0-SNAPSHOT-20
-    restart: unless-stopped
-    env_file:
-      - ./env/global.env
-      - ./env/global-api.env
-      - ./env/web-publication-backend.env
-    expose:
-      - "9321"
-      - "8080"
-    depends_on:
-      - graylog
+  # web-publication-backend:
+  #   image: umansioacr.azurecr.io/web-publication/web-publication-backend:1.0-SNAPSHOT-18
+  #   restart: unless-stopped
+  #   env_file:
+  #     - ./env/global.env
+  #     - ./env/global-api.env
+  #     - ./env/web-publication-backend.env
+  #   ports:
+  #     - "8787:8080"
+  #   expose:
+  #     - "9321"
+  #     - "8080"
+  #   depends_on: 
+  #     - graylog
