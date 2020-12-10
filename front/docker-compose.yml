@@ -44,7 +44,7 @@ services:
 
   # Web Publication Service
   web-publication-service:
-    image: umansioacr.azurecr.io/web-publication/web-publication-service:1.0.0-27
+    image: umansioacr.azurecr.io/web-publication/web-publication-service:1.0.0-28
     restart: unless-stopped
     ports:
       - "81:80"

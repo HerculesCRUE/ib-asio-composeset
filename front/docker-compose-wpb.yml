@@ -1,10 +1,9 @@
-version: '3.7'
+version: "3.7"
 
 services:
-
   # web-publication-backend
   web-publication-backend:
-    image: umansioacr.azurecr.io/web-publication/web-publication-backend:1.0-SNAPSHOT-20
+    image: umansioacr.azurecr.io/web-publication/web-publication-backend:1.0-SNAPSHOT-21
     restart: unless-stopped
     env_file:
       - ./env/global.env
