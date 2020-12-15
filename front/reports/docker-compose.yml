@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   reports:
-    image: umansioacr.azurecr.io/reports:25
+    image: umansioacr.azurecr.io/reports:37
     ports:
       - "8070:80"
     volumes:
