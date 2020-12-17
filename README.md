@@ -1,14 +1,14 @@
 ![](./images/logos_feder.png)
 
 
-| Entregable     | Documentación sobre el despliegue                                |
-| -------------- | ------------------------------------------------------------ |
-| Fecha          | 25/05/2020                                                   |
-| Proyecto       | [ASIO](https://www.um.es/web/hercules/proyectos/asio) (Arquitectura Semántica e Infraestructura Ontológica) en el marco de la iniciativa [Hércules](https://www.um.es/web/hercules/) para la Semántica de Datos de Investigación de Universidades que forma parte de [CRUE-TIC](http://www.crue.org/SitePages/ProyectoHercules.aspx) |
-| Módulo         | Arquitectura Semántica                                                   |
-| Tipo           | Documento                                                    |
-| Objetivo       | Despliegue en entorno de desarrollo para la Universidad de Murcia                          |
-| Estado         | 100% para el hito 1                                          |
+| Entregable | Documentación sobre el despliegue                            |
+| ---------- | ------------------------------------------------------------ |
+| Fecha      | 17/12/2020                                                   |
+| Proyecto   | [ASIO](https://www.um.es/web/hercules/proyectos/asio) (Arquitectura Semántica e Infraestructura Ontológica) en el marco de la iniciativa [Hércules](https://www.um.es/web/hercules/) para la Semántica de Datos de Investigación de Universidades que forma parte de [CRUE-TIC](https://www.crue.org/proyecto/hercules/) |
+| Módulo     | Arquitectura Semántica                                       |
+| Tipo       | Documento                                                    |
+| Objetivo   | Despliegue en entorno de desarrollo para la Universidad de Murcia |
+| Estado     | 100% para el hito 1                                          |
 | Próximos pasos | Actualizar de forma acorde al avance del proyecto y surjan necesidades.    
 
 
@@ -330,7 +330,7 @@ La máquina de front será la encargada de alojar las aplicaciones de frontal. L
 Los servicios desplegados solamente son visibles desde las máquinas de la red, pero no así desde la máquina local, aunque esta se encuentre conectada a la VPN. Para poder acceder a los servicios será preciso configurar un tunel SSH a los puertos de las aplicaciones. Los pasos a seguir son:
 
 1. Configurar en el fichero /etc/hosts (en Windows C:\\Windows\\System32\\drivers\\etc\\hosts) los nombres herc-iz-bd-desa.atica.um.es y herc-iz-back-desa.atica.um.es para que resuelvan a la IP 127.0.0.1
-  
+
   127.0.0.1	herc-iz-bd-desa.atica.um.es
   127.0.0.1	herc-iz-back-desa.atica.um.es
 
