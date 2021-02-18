@@ -23,9 +23,9 @@
 |---|---|---|---|
 | **IP**  | 155.54.239.207  | 155.54.239.208  | 155.54.239.209 |
 | **SO**  | CentOS Linux release 7.7.1908  | CentOS Linux release 7.7.1908  | CentOS Linux release 7.7.1908  |
-| **MEMORIA** | 8GB  | 16GB  | 8GB |
+| **MEMORIA** | 16GB  | 32GB  | 16GB |
 | **PROCESADOR** | Intel Core i7 9xx (Nehalem Class Core i7)  | Intel Core i7 9xx (Nehalem Class Core i7)  | Intel Core i7 9xx (Nehalem Class Core i7) |
-| **CORES** | 4  | 4  | 4 |
+| **CORES** | 4  | 8  | 4 |
 | **ARQUITECTURA** | 64  | 64  | 64 |
 
 ### Usuario
