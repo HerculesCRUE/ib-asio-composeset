@@ -27,7 +27,7 @@
 | **PROCESADOR** | Intel Core i7 9xx (Nehalem Class Core i7)  | Intel Core i7 9xx (Nehalem Class Core i7)  | Intel Core i7 9xx (Nehalem Class Core i7) |
 | **CORES** | 4  | 8  | 4 |
 | **ARQUITECTURA** | 64  | 64  | 64 |
-| *PUERTOS* | 22, 80, 55555, 3030, 8081, 8070, 80, 81, 8080, 9321, 9326 | 22, 9321 | 22, 80, 8282, 8181, 3030 |
+| **PUERTOS** | 22, 80, 55555, 3030, 8081, 8070, 80, 81, 8080, 9321, 9326 | 22, 9321 | 22, 80, 8282, 8181, 3030 |
 
 ### Usuario
 
