@@ -3,7 +3,7 @@ version: '3.7'
 services:
 
   pdi:
-    image: herculescrue/pdi:9.0
+    image: umansioacr.azurecr.io/etl/pdi:9.0
     restart: unless-stopped
     ports:
       - "8080:8080"

@@ -3,10 +3,13 @@ version: "3.7"
 services:
   # Trellis
   trellis:
-    image: umansioacr.azurecr.io/ldp/asio-ldp:1.0-SNAPSHOT-24
+    # image: umansioacr.azurecr.io/ldp/asio-ldp:1.0-SNAPSHOT-24
+    image: herculescrue/asio-ldp:1.0
     restart: unless-stopped
-    ports:
-      - 80:8080
+    # ports:
+    #   - 80:8080
+    expose:
+      - 8080
     environment:
       - ASIO_LDP_CONFIG_FILE=/opt/trellis/conf/config.yml
       - JAVA_OPTS=-Dtrellis.webac.default-acl-location=org/trellisldp/webac/nonSecuredAcl.ttl
@@ -16,14 +19,20 @@ services:
       - ./trellis/users.auth:/opt/trellis/etc/users.auth
     depends_on:
       - keycloak
+    links:
+      - keycloak
+    networks:
+      - asionet
 
   # Keycloak
   keycloak:
     image: quay.io/keycloak/keycloak:11.0.3
     restart: unless-stopped
-    ports:
+    # ports:
       # - "8080:8080"
-      - "8787:8080"
+      # - "8787:8080"
+    expose:
+      - 8080
     environment:
       - KEYCLOAK_USER=admin
       - KEYCLOAK_PASSWORD=admin
@@ -36,18 +45,48 @@ services:
       - DB_PASSWORD=uHkSyrvUsQD&
       - JGROUPS_DISCOVERY_PROTOCOL=JDBC_PING
       - JGROUPS_DISCOVERY_PROPERTIES=datasource_jndi_name=java:jboss/datasources/KeycloakDS,info_writer_sleep_time=500
+      # https support https://keycloak.discourse.group/t/keycloak-in-docker-behind-reverse-proxy/1195/11
+      - PROXY_ADDRESS_FORWARDING=true
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080"]
       interval: 30s
       timeout: 10s
       retries: 5
+    networks:
+      - asionet
+
+  # web-publication-backend
+  web-publication-backend:
+    # image: umansioacr.azurecr.io/web-publication/web-publication-backend:1.0-SNAPSHOT-30
+    image: herculescrue/web-publication-backend:develop
+    restart: unless-stopped
+    env_file:
+      - ./env/global.env
+      - ./env/global-api.env
+      - ./env/web-publication-backend.env
+    # ports:
+    #   - "8080:8080"
+    expose:
+      - "9321"
+      - "8080"
+    networks:
+      - asionet
 
   # Web Publication Service
   web-publication-service:
-    image: umansioacr.azurecr.io/web-publication/web-publication-service:1.0.0-28
+    # image: umansioacr.azurecr.io/web-publication/web-publication-service:1.0.0-36
+    image: herculescrue/web-publication-service:develop
     restart: unless-stopped
-    ports:
-      - "81:80"
+    # ports:
+    #   - "81:80"
+    expose:
+      - 80
+    networks:
+      - asionet
 
 volumes:
   trellis_data:
+
+networks:
+  asionet:
+    name: asio_network

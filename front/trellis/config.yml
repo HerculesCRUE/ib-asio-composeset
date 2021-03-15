@@ -42,7 +42,7 @@ auth:
     jwt:
         enabled: true
         # key: changeme
-        jwks: http://keycloak:8080/auth/realms/asio/protocol/openid-connect/certs
+        jwks: http://keycloak:8080/auth/realms/umasio/protocol/openid-connect/certs
     basic:
         enabled: true
         usersFile: /opt/trellis/etc/users.auth

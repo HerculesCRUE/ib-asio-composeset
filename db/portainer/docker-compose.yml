@@ -1,17 +1,13 @@
-version: '3.7'
+version: '3.2'
 
 services:
-  portainer:
-    image: portainer/portainer-ce
-    restart: unless-stopped
-    ports:
-      - 9001:9000
-      - 8001:8000
+  agent:
+    image: portainer/agent:linux-amd64-2.1.0-alpine
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - portainer_data:/data
-
-volumes:
-  portainer_data:
-
-# docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce
+      - /var/lib/docker/volumes:/var/lib/docker/volumes
+    ports:
+      - target: 9001
+        published: 9001
+        protocol: tcp
+        mode: host

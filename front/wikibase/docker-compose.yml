@@ -14,15 +14,17 @@ version: '3.7'
 services:
   wikibase:
     image: wikibase/wikibase:1.34-bundle
-    ports:
+    # ports:
     # CONFIG - Change the 8181 here to expose Wikibase & MediaWiki on a different port
-     - "8181:80"
+    #  - "8181:80"
+    expose:
+      - "80"
     volumes:
       - mediawiki-images-data:/var/www/html/images
       - quickstatements-data:/quickstatements/data
     restart: unless-stopped
     networks:
-      default:
+      asionet:
         aliases:
          - wikibase.svc
          # CONFIG - Add your real wikibase hostname here, for example wikibase-registry.wmflabs.org
@@ -43,13 +45,15 @@ services:
   wdqs-frontend:
     image: wikibase/wdqs-frontend:latest
     restart: unless-stopped
-    ports:
+    # ports:
     # CONFIG - Change the 8282 here to expose the Query Service UI on a different port
-     - "8282:80"
+    #  - "8282:80"
+    expose:
+      - "80"
     depends_on:
     - wdqs-proxy
     networks:
-      default:
+      asionet:
         aliases:
          - wdqs-frontend.svc
     environment:
@@ -62,7 +66,7 @@ services:
       - query-service-data:/wdqs/data
     command: /runBlazegraph.sh
     networks:
-      default:
+      asionet:
         aliases:
          - wdqs.svc
     environment:
@@ -76,12 +80,14 @@ services:
     restart: unless-stopped
     environment:
       - PROXY_PASS_HOST=wdqs.svc:9999
-    ports:
-     - "8989:80"
+    # ports:
+    #  - "8989:80"
+    expose:
+      - "80"
     depends_on:
     - wdqs
     networks:
-      default:
+      asionet:
         aliases:
          - wdqs-proxy.svc
   wdqs-updater:
@@ -92,7 +98,7 @@ services:
     - wdqs
     - wikibase
     networks:
-      default:
+      asionet:
         aliases:
          - wdqs-updater.svc
     environment:
@@ -102,14 +108,16 @@ services:
   # CONFING, in order to not load quickstatements then remove this entire section
   quickstatements:
     image: wikibase/quickstatements:latest
-    ports:
-     - "9191:80"
+    # ports:
+    #  - "9191:80"
+    expose:
+      - "80"
     depends_on:
      - wikibase
     volumes:
      - quickstatements-data:/quickstatements/data
     networks:
-      default:
+      asionet:
         aliases:
          - quickstatements.svc
     environment:
@@ -125,3 +133,8 @@ volumes:
   mediawiki-images-data:
   query-service-data:
   quickstatements-data:
+
+networks:
+  asionet:
+    external:
+      name: asio_network

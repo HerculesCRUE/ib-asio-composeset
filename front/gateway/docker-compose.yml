@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+
+  nginx:
+    container_name: nginx
+    image: 'nginx:alpine'
+    ports: 
+      - "80:80"
+      - "443:443"
+      # - "8443:8443"
+    volumes:
+      - './conf.d:/etc/nginx/conf.d'
+      - './certsm:/etc/nginx/certs'
+      - './certs.ss:/etc/nginx/certs.ss'
+    restart: always
+    networks:
+      - asionet
+
+networks:
+  asionet:
+    external:
+      name: asio_network
