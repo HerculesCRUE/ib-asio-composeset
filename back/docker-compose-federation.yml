@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+  federation:
+    image: herculescrue/federation:develop
+    restart: unless-stopped
+    env_file:
+      # - ./env/global-api.env
+      - ./env/federation.env
+    ports:
+      - "9328:9328"
+      - "8088:8080"
+    expose:
+      - "9328"
+      - "8080"
+

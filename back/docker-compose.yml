@@ -1,6 +1,7 @@
 version: '3.7'
 
 services:
+
   # Graylog: https://hub.docker.com/r/graylog/graylog/
   graylog:
     image: graylog/graylog:3.3
@@ -9,7 +10,7 @@ services:
       # CHANGE ME (must be at least 16 characters)!
       - GRAYLOG_PASSWORD_SECRET=mycustompepper01
       # Password: admin uoFXoV03%ZMo, asio YlxC^#K!%%2V
-      - GRAYLOG_ROOT_PASSWORD_SHA2=86b1d465c6d2b816fa6ac9c59d9f48487335d66ecffb016d4b9cc207c850e426 #uoFXoV03%ZMo
+      - GRAYLOG_ROOT_PASSWORD_SHA2=86b1d465c6d2b816fa6ac9c59d9f48487335d66ecffb016d4b9cc207c850e426
       - GRAYLOG_HTTP_BIND_ADDRESS=0.0.0.0:9000
       # - GRAYLOG_HTTP_EXTERNAL_URI=http://herc-iz-back-desa.atica.um.es:9000/
       - GRAYLOG_HTTP_EXTERNAL_URI=https://graylog.herculesasioizertis.desa.um.es/
@@ -61,7 +62,7 @@ services:
 
   # uris-generator
   uris-generator:
-     # image: umansioacr.azurecr.io/event-management/uris-generator:1.1.0-33
+    # image: umansioacr.azurecr.io/event-management/uris-generator:1.1.0-33
     image: herculescrue/uris-generator:develop
     restart: unless-stopped
     env_file:
@@ -74,24 +75,75 @@ services:
     depends_on:
       - graylog
 
+  #federation
+  federation:
+    image: herculescrue/federation:develop
+    restart: unless-stopped
+    env_file:
+      - ./env/federation.env
+    ports:
+      - "9328:9328"
+      - "8088:8080"
+    expose:
+      - "9328"
+      - "8080"
+
   # discovery
   discovery:
     # image: umansioacr.azurecr.io/event-management/discovery:1.0-SNAPSHOT-22
     image: herculescrue/discovery:develop
     restart: unless-stopped
     env_file:
-      - ./env/global.env
-      - ./env/global-api.env
       - ./env/discovery.env
+    ports:
+      - "9327:9327"
+      - "8087:8080"
     expose:
-      - "9321"
+      - "9327"
       - "8080"
     depends_on:
       - graylog
+      - uris-generator
+      - federation
+      - elasticsearch
+
+  # elasticsearch
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.5.1
+    restart: unless-stopped
+    environment:
+      - cluster.name=es-asio-cluster
+      - xpack.security.enabled=false
+      - discovery.type=single-node
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    cap_add:
+      - IPC_LOCK
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+      - 9300:9300
+
+  # kibana
+  kibana:
+    restart: unless-stopped
+    image: docker.elastic.co/kibana/kibana:6.5.1
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    ports:
+      - 5601:5601
+    depends_on:
+      - elasticsearch
 
   # trellis-event-processor
   trellis-event-processor:
-     #image: umansioacr.azurecr.io/event-management/event-processor:1.0-SNAPSHOT-47
+    #image: umansioacr.azurecr.io/event-management/event-processor:1.0-SNAPSHOT-47
     image: herculescrue/event-processor:develop
     restart: unless-stopped
     env_file:
@@ -123,7 +175,7 @@ services:
 
   # wikibase-event-processor
   wikibase-event-processor:
-     # image: umansioacr.azurecr.io/event-management/event-processor:1.0-SNAPSHOT-47
+    # image: umansioacr.azurecr.io/event-management/event-processor:1.0-SNAPSHOT-47
     image: herculescrue/event-processor:develop
     restart: unless-stopped
     env_file:
@@ -153,17 +205,21 @@ services:
       - graylog
 
   # web-publication-backend
-  # web-publication-backend:
-  #   image: umansioacr.azurecr.io/web-publication/web-publication-backend:1.0-SNAPSHOT-20
-  #   restart: unless-stopped
-  #   env_file:
-  #     - ./env/global.env
-  #     - ./env/global-api.env
-  #     - ./env/web-publication-backend.env
-  #   ports:
-  #     - "8787:8080"
-  #   expose:
-  #     - "9321"
-  #     - "8080"
-  #   depends_on:
-  #     - graylog
+#  web-publication-backend:
+#    image: umansioacr.azurecr.io/web-publication/web-publication-backend:1.0-SNAPSHOT-20
+#    restart: unless-stopped
+#    env_file:
+#      - ./env/global.env
+#      - ./env/global-api.env
+#      - ./env/web-publication-backend.env
+#    ports:
+#      - "8787:8080"
+#    expose:
+#      - "9321"
+#      - "8080"
+#    depends_on:
+#      - graylog
+
+volumes:
+  elasticsearch-data:
+    driver: local
