@@ -8,7 +8,7 @@
 | Módulo     | Arquitectura Semántica                                       |
 | Tipo       | Documento                                                    |
 | Objetivo   | Despliegue en entorno de desarrollo para la Universidad de Murcia |
-| Estado     | 100% para el hito 1                                          |
+| Estado     | 100%                                         |
 | Próximos pasos | Actualizar de forma acorde al avance del proyecto y surjan necesidades.    
 
 
