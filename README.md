@@ -1,14 +1,15 @@
 ![](./images/logos_feder.png)
 
 
-| Entregable | Documentación sobre el despliegue                            |
-| ---------- | ------------------------------------------------------------ |
-| Fecha      | 17/12/2020                                                   |
-| Proyecto   | [ASIO](https://www.um.es/web/hercules/proyectos/asio) (Arquitectura Semántica e Infraestructura Ontológica) en el marco de la iniciativa [Hércules](https://www.um.es/web/hercules/) para la Semántica de Datos de Investigación de Universidades que forma parte de [CRUE-TIC](https://www.crue.org/proyecto/hercules/) |
-| Módulo     | Arquitectura Semántica                                       |
-| Tipo       | Documento                                                    |
-| Objetivo   | Despliegue en entorno de desarrollo para la Universidad de Murcia |
-| Estado     | 100%                                         |
+| Entregable   | Documentación sobre el despliegue                            |
+| ------------ | ------------------------------------------------------------ |
+| Fecha        | 17/12/2020                                                   |
+| Revisado por |                                                              |
+| Proyecto     | [ASIO](https://www.um.es/web/hercules/proyectos/asio) (Arquitectura Semántica e Infraestructura Ontológica) en el marco de la iniciativa [Hércules](https://www.um.es/web/hercules/) para la Semántica de Datos de Investigación de Universidades que forma parte de [CRUE-TIC](https://www.crue.org/proyecto/hercules/) |
+| Módulo       | Arquitectura Semántica                                       |
+| Tipo         | Documento                                                    |
+| Objetivo     | Despliegue en entorno de desarrollo para la Universidad de Murcia |
+| Estado       | 100%                                                         |
 | Próximos pasos | Actualizar de forma acorde al avance del proyecto y surjan necesidades.    
 
 
