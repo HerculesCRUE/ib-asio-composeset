@@ -358,9 +358,9 @@ Los servicios desplegados solamente son visibles desde las máquinas de la red, 
 Para obtener el token JWT desde Keycloak, es puede hacer con Postman configurando los siguientes parámetros:
 
 * Grant type: Authorization Code
-* Callback URL: http://localhost:8082
-* Auth URL: https://herc-iz-front-desa.atica.um.es:8443/auth/realms/asio/protocol/openid-connect/auth
-* Access Token URL: https://herc-iz-front-desa.atica.um.es:8443/auth/realms/asio/protocol/openid-connect/token
+* Callback URL: https://herculesasioizertis.desa.um.es/auth/
+* Auth URL: https://herculesasioizertis.desa.um.es/auth/realms/asio/protocol/openid-connect/auth
+* Access Token URL: https://herculesasioizertis.desa.um.es/auth/realms/asio/protocol/openid-connect/token
 * Client ID: trellis
 * Client Secret: 7c950207-b369-4a33-bbf0-fe2c6ca59e9a
 * Scope: openid
