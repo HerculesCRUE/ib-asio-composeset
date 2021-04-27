@@ -344,22 +344,14 @@ Los servicios desplegados solamente son visibles desde las máquinas de la red, 
   * **MariaDB**: 
     * Túnel SSH: 3306 -> herc-iz-bd-desa.atica.um.es:3306
     * Autenticación: usuarios de base de datos
-  * **Trellis**:
-    * Túnel SSH: 80 -> herc-iz-front-desa.atica.um.es:80
-    * Acceso desde navegador: http://herc-iz-front-desa.atica.um.es/
-    * Autenticación: configurado WebAC, posible acceso con autenticación básica o token JWT obtenido de Keycloak
-  * **Wikibase AS**:
-    * Túnel SSH: 8181 -> herc-iz-front-desa.atica.um.es:8181
-    * Acceso desde navegador: http://herc-iz-front-desa.atica.um.es:8181/
-    * Autenticación: no es necesario para la visualización de datos
   * **Graylog**:
     * Túnel SSH: 9000 -> herc-iz-back-desa.atica.um.es:9000
+    
     * Acceso desde navegador: http://herc-iz-back-desa.atica.um.es:9000/
+    
     * Autenticación: es precisa, configurado usuario "admin"
-  * **Keycloak**:
-    * Tunel SSH: 8443 -> herc-iz-front-desa.atica.um.es:8443
-    * Acceso desde navegador: https://herc-iz-front-desa.atica.um.es:8443
-    * Autenticación: es necesaria
+    
+      
 
 #### Obtención de token JWT
 
