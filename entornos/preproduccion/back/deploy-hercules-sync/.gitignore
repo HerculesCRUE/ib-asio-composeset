@@ -1,0 +1,24 @@
+instance
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+
+.pytest_cache/
+
+.DS_Store
+
+docs/sphinx/build
+
+# Codecov
+.coverage
+coverage.xml
+run_codecov.sh
+
+# editor
+.vscode
+
+uris.pkl
+
+venv/
