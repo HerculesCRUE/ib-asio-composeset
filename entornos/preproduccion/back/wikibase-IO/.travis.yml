@@ -1,0 +1,47 @@
+sudo: required
+language: minimal
+services:
+  - docker
+
+env:
+ - IMAGE_PATH=wikibase/1.35/
+ - IMAGE_PATH=wikibase/1.31/
+ - IMAGE_PATH=wdqs/0.3.6/
+ - IMAGE_PATH=wdqs/0.3.10/
+ - IMAGE_PATH=wdqs/0.3.40/
+ - IMAGE_PATH=wdqs-frontend/latest/
+ - IMAGE_PATH=wdqs-frontend/legacy/
+ - IMAGE_PATH=wdqs-proxy/latest/
+ - IMAGE_PATH=quickstatements/latest/
+ - IMAGE_PATH=elasticsearch/5.6.14-extra/
+ - IMAGE_PATH=elasticsearch/6.5.4-extra/
+
+script:
+ - source ./.travis/docker-push-setup.sh
+ - bash ./$IMAGE_PATH/.travis/build-deploy.sh
+
+jobs:
+  include:
+    - stage: prebuild
+      script: bash ./.travis/checkx.sh
+      env:
+       - SCRIPT=checkx
+       - IMAGE_PATH=all
+    - stage: prebuild
+      script: bash ./.travis/run-linters.sh
+      env:
+       - SCRIPT=hadolint
+       - IMAGE_PATH=all
+
+stages:
+  - prebuild
+  - test
+
+notifications:
+  irc:
+    channels:
+      - "chat.freenode.net#wikidata-feed"
+    template:
+      - "%{repository_slug} (%{branch} - %{commit} %{commit_message} : %{author}): %{message}"
+      - "Change view : %{compare_url}"
+      - "Build details : %{build_url}"
