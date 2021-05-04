@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+
+  reports:
+    # image: umansioacr.azurecr.io/reports:21v2
+    image: umansioacr.azurecr.io/reports:41
+    restart: unless-stopped
+    # ports:
+    #   - "8070:80"
+    expose:
+      - "80"
+    volumes:
+      - "./apache/index.html:/usr/local/apache2/htdocs/index.html"
+    networks:
+      - asionet
+
+networks:
+  asionet:
+    external:
+      name: asio_network

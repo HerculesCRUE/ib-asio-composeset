@@ -1,0 +1,7 @@
+version: '3.7'
+
+services:
+  ## Kafka
+  kafka:
+    environment: 
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092,PLAINTEXT_HOST://host.docker.internal:29092

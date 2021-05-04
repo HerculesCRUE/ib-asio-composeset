@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+
+  samltest:
+    image: umansioacr.azurecr.io/saml-test
+    expose:
+      - 8080
+    ports:
+      - 8080:8080
+    environment:
+      # - SERVER_SERVLET_CONTEXT_PATH=/samltest
+      - SERVER_PORT=8080
+      - KEYCLOAK_AUTHSERVERURL=https://herculesasioizertis.desa.um.es/auth
+    networks:
+      - asionet
+ #   extra_hosts:
+ #     - "herculesasioizertis.desa.um.es:155.54.239.207"
+ #     - "keycloak.herculesasioizertis.desa.um.es:155.54.239.207"
+ #     - "samltest.herculesasioizertis.desa.um.es:155.54.239.207"
+
+networks:
+  asionet:
+    external:
+      name: asio_network
+

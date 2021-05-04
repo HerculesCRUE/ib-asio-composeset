@@ -1,0 +1,28 @@
+version: '3.1'
+
+services:
+
+  # This is the container for the back
+  ontoloci-back:
+    image: ontoloci-back
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    ports:
+      - 8070:8090
+    environment:
+      ONTOLOCI_GITHUB_APP_ID: "106686"
+      ONTOLOCI_GITHUB_KEY_PATH: "/ontolo-ci-hercules-pkcs8.key"
+    stdin_open: true # Needed to keep the image alive.
+
+  # This is the container for the web gui.
+  ontoloci-web:
+    image: ontoloci-web
+    build:
+      context: ../ontoloci-web
+      dockerfile: Dockerfile
+    ports:
+      - 9321:3000
+    environment:
+      REACT_APP_ONTOLOCI_GITHUB_CLIENT_ID: "Iv1.4165e745cebcb7f9"
+    stdin_open: true # Needed to keep the image alive.

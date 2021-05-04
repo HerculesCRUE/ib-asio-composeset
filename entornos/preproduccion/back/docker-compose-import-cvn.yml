@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+  # dataset-importer batch
+  cvn-importer:
+    # image: umansioacr.azurecr.io/input/dataset-importer:1.0-SNAPSHOT-60
+    image: herculescrue/dataset-importer:develop
+    restart: "no"
+    env_file: 
+      - ./env/global.env
+      - ./env/global-importer.env
+      - ./env/cvn-importer.env

@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+  discovery-service:
+    image: herculescrue/service-discovery:develop
+    restart: unless-stopped
+    env_file:
+      - ./env/global-api.env
+      - ./env/service-discovery.env
+    ports:
+      - "9329:9329"
+      - "8089:8080"
+    expose:
+      - "9329"
+      - "8080"
+

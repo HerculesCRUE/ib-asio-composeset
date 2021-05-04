@@ -1,0 +1,500 @@
+2020/12/04 12:08:52 - CheckConnectionsAndControl - Using run configuration [Pentaho local]
+2020/12/04 12:08:56 - Plain - Using run configuration [Pentaho local]
+2020/12/04 12:08:56 - Proyecto.0 - ERROR (version 9.1.0.0-324, build 9.1.0.0-324 from 2020-09-07 05.09.05 by buildguy) : Unexpected error
+2020/12/04 12:08:56 - Proyecto.0 - ERROR (version 9.1.0.0-324, build 9.1.0.0-324 from 2020-09-07 05.09.05 by buildguy) : org.pentaho.di.core.exception.KettleDatabaseException: 
+2020/12/04 12:08:56 - Proyecto.0 - An error occurred executing SQL: 
+2020/12/04 12:08:56 - Proyecto.0 - SELECT
+  ENTITY_ID
+, version
+, operation
+, idProyecto
+, limitativo
+, nombre
+, proyectoFinalista
+FROM app.Proyecto
+where version = ${version} and idProyecto in (16373,6748,15760,11871,3995,13256,14859,5875,16291,428,19953,172,20061,10527,15584,9346,11894,205,12307,9349,19958,19815,3537,14679,16829,17627,14625,16281,13621,8522,19958,
+19815,3537,14679,16829,17627,14625,16281)
+
+
+
+
+
+2020/12/04 12:08:56 - Proyecto.0 - unknown escape sequence {version}
+2020/12/04 12:08:56 - Proyecto.0 - 
+2020/12/04 12:08:56 - Proyecto.0 - 	at org.pentaho.di.core.database.Database.openQuery(Database.java:1772)
+2020/12/04 12:08:56 - Proyecto.0 - 	at org.pentaho.di.trans.steps.tableinput.TableInput.doQuery(TableInput.java:236)
+2020/12/04 12:08:56 - Proyecto.0 - 	at org.pentaho.di.trans.steps.tableinput.TableInput.processRow(TableInput.java:140)
+2020/12/04 12:08:56 - Proyecto.0 - 	at org.pentaho.di.trans.step.RunThread.run(RunThread.java:62)
+2020/12/04 12:08:56 - Proyecto.0 - 	at java.lang.Thread.run(Unknown Source)
+2020/12/04 12:08:56 - Proyecto.0 - Caused by: java.sql.SQLException: unknown escape sequence {version}
+2020/12/04 12:08:56 - Proyecto.0 - 	at org.mariadb.jdbc.internal.util.Utils.resolveEscapes(Utils.java:461)
+2020/12/04 12:08:56 - Proyecto.0 - 	at org.mariadb.jdbc.internal.util.Utils.nativeSql(Utils.java:555)
+2020/12/04 12:08:56 - Proyecto.0 - 	at org.mariadb.jdbc.MariaDbStatement.executeInternal(MariaDbStatement.java:344)
+2020/12/04 12:08:56 - Proyecto.0 - 	at org.mariadb.jdbc.MariaDbStatement.executeQuery(MariaDbStatement.java:595)
+2020/12/04 12:08:56 - Proyecto.0 - 	at org.pentaho.di.core.database.Database.openQuery(Database.java:1761)
+2020/12/04 12:08:56 - Proyecto.0 - 	... 4 more
+2020/12/04 12:08:56 - 5.1.Plain_Proyecto - ERROR (version 9.1.0.0-324, build 9.1.0.0-324 from 2020-09-07 05.09.05 by buildguy) : Errors detected!
+2020/12/04 12:08:56 - Group by 2.0 - ERROR (version 9.1.0.0-324, build 9.1.0.0-324 from 2020-09-07 05.09.05 by buildguy) : Unexpected error
+2020/12/04 12:08:56 - Group by 2.0 - ERROR (version 9.1.0.0-324, build 9.1.0.0-324 from 2020-09-07 05.09.05 by buildguy) : org.pentaho.di.core.exception.KettleStepException: 
+2020/12/04 12:08:56 - Group by 2.0 - Unable to get queryfields for SQL: 
+2020/12/04 12:08:56 - Group by 2.0 - SELECT
+  ENTITY_ID
+, version
+, operation
+, idProyecto
+, limitativo
+, nombre
+, proyectoFinalista
+FROM app.Proyecto
+where version = ${version} and idProyecto in (16373,6748,15760,11871,3995,13256,14859,5875,16291,428,19953,172,20061,10527,15584,9346,11894,205,12307,9349,19958,19815,3537,14679,16829,17627,14625,16281,13621,8522,19958,
+19815,3537,14679,16829,17627,14625,16281)
+
+
+
+
+
+2020/12/04 12:08:56 - Group by 2.0 - 
+2020/12/04 12:08:56 - Group by 2.0 - Couldn't get field info from [SELECT
+  ENTITY_ID
+, version
+, operation
+, idProyecto
+, limitativo
+, nombre
+, proyectoFinalista
+FROM app.Proyecto
+where version = ${version} and idProyecto in (16373,6748,15760,11871,3995,13256,14859,5875,16291,428,19953,172,20061,10527,15584,9346,11894,205,12307,9349,19958,19815,3537,14679,16829,17627,14625,16281,13621,8522,19958,
+19815,3537,14679,16829,17627,14625,16281)
+
+
+
+
+]
+2020/12/04 12:08:56 - Group by 2.0 - 
+2020/12/04 12:08:56 - Group by 2.0 - unknown escape sequence {version}
+2020/12/04 12:08:56 - Group by 2.0 - 
+2020/12/04 12:08:56 - Group by 2.0 - 
+2020/12/04 12:08:56 - Group by 2.0 - 	at org.pentaho.di.trans.steps.tableinput.TableInputMeta.getFields(TableInputMeta.java:275)
+2020/12/04 12:08:56 - Group by 2.0 - 	at org.pentaho.di.trans.TransMeta.getThisStepFields(TransMeta.java:2054)
+2020/12/04 12:08:56 - Group by 2.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1872)
+2020/12/04 12:08:56 - Group by 2.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1835)
+2020/12/04 12:08:56 - Group by 2.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1835)
+2020/12/04 12:08:56 - Group by 2.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1835)
+2020/12/04 12:08:56 - Group by 2.0 - 	at org.pentaho.di.trans.TransMeta.getPrevStepFields(TransMeta.java:1951)
+2020/12/04 12:08:56 - Group by 2.0 - 	at org.pentaho.di.trans.TransMeta.getPrevStepFields(TransMeta.java:1921)
+2020/12/04 12:08:56 - Group by 2.0 - 	at org.pentaho.di.trans.TransMeta.getPrevStepFields(TransMeta.java:1904)
+2020/12/04 12:08:56 - Group by 2.0 - 	at org.pentaho.di.trans.steps.groupby.GroupBy.processRow(GroupBy.java:114)
+2020/12/04 12:08:56 - Group by 2.0 - 	at org.pentaho.di.trans.step.RunThread.run(RunThread.java:62)
+2020/12/04 12:08:56 - Group by 2.0 - 	at java.lang.Thread.run(Unknown Source)
+2020/12/04 12:08:56 - Group by 2.0 - Caused by: org.pentaho.di.core.exception.KettleDatabaseException: 
+2020/12/04 12:08:56 - Group by 2.0 - Couldn't get field info from [SELECT
+  ENTITY_ID
+, version
+, operation
+, idProyecto
+, limitativo
+, nombre
+, proyectoFinalista
+FROM app.Proyecto
+where version = ${version} and idProyecto in (16373,6748,15760,11871,3995,13256,14859,5875,16291,428,19953,172,20061,10527,15584,9346,11894,205,12307,9349,19958,19815,3537,14679,16829,17627,14625,16281,13621,8522,19958,
+19815,3537,14679,16829,17627,14625,16281)
+
+
+
+
+]
+2020/12/04 12:08:56 - Group by 2.0 - 
+2020/12/04 12:08:56 - Group by 2.0 - unknown escape sequence {version}
+2020/12/04 12:08:56 - Group by 2.0 - 
+2020/12/04 12:08:56 - Group by 2.0 - 	at org.pentaho.di.core.database.Database.getQueryFieldsFallback(Database.java:2569)
+2020/12/04 12:08:56 - Group by 2.0 - 	at org.pentaho.di.core.database.Database.getQueryFields(Database.java:2416)
+2020/12/04 12:08:56 - Group by 2.0 - 	at org.pentaho.di.trans.steps.tableinput.TableInputMeta.getFields(TableInputMeta.java:267)
+2020/12/04 12:08:56 - Group by 2.0 - 	... 11 more
+2020/12/04 12:08:56 - Group by 2.0 - Caused by: java.sql.SQLException: unknown escape sequence {version}
+2020/12/04 12:08:56 - Group by 2.0 - 	at org.mariadb.jdbc.internal.util.Utils.resolveEscapes(Utils.java:461)
+2020/12/04 12:08:56 - Group by 2.0 - 	at org.mariadb.jdbc.internal.util.Utils.nativeSql(Utils.java:555)
+2020/12/04 12:08:56 - Group by 2.0 - 	at org.mariadb.jdbc.MariaDbConnection.internalPrepareStatement(MariaDbConnection.java:471)
+2020/12/04 12:08:56 - Group by 2.0 - 	at org.mariadb.jdbc.MariaDbConnection.prepareStatement(MariaDbConnection.java:274)
+2020/12/04 12:08:56 - Group by 2.0 - 	at org.pentaho.di.core.database.Database.getQueryFieldsFallback(Database.java:2535)
+2020/12/04 12:08:56 - Group by 2.0 - 	... 13 more
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - ERROR (version 9.1.0.0-324, build 9.1.0.0-324 from 2020-09-07 05.09.05 by buildguy) : Unexpected error
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - ERROR (version 9.1.0.0-324, build 9.1.0.0-324 from 2020-09-07 05.09.05 by buildguy) : org.pentaho.di.core.exception.KettleStepException: 
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - Unable to get queryfields for SQL: 
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - SELECT
+  ENTITY_ID
+, version
+, operation
+, idProyecto
+, limitativo
+, nombre
+, proyectoFinalista
+FROM app.Proyecto
+where version = ${version} and idProyecto in (16373,6748,15760,11871,3995,13256,14859,5875,16291,428,19953,172,20061,10527,15584,9346,11894,205,12307,9349,19958,19815,3537,14679,16829,17627,14625,16281,13621,8522,19958,
+19815,3537,14679,16829,17627,14625,16281)
+
+
+
+
+
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - 
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - Couldn't get field info from [SELECT
+  ENTITY_ID
+, version
+, operation
+, idProyecto
+, limitativo
+, nombre
+, proyectoFinalista
+FROM app.Proyecto
+where version = ${version} and idProyecto in (16373,6748,15760,11871,3995,13256,14859,5875,16291,428,19953,172,20061,10527,15584,9346,11894,205,12307,9349,19958,19815,3537,14679,16829,17627,14625,16281,13621,8522,19958,
+19815,3537,14679,16829,17627,14625,16281)
+
+
+
+
+]
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - 
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - unknown escape sequence {version}
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - 
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - 
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - 	at org.pentaho.di.trans.steps.tableinput.TableInputMeta.getFields(TableInputMeta.java:275)
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - 	at org.pentaho.di.trans.TransMeta.getThisStepFields(TransMeta.java:2054)
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1872)
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1835)
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1835)
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1835)
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1835)
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1769)
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1732)
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1716)
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - 	at org.pentaho.di.trans.steps.mergejoin.MergeJoin.processRow(MergeJoin.java:99)
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - 	at org.pentaho.di.trans.step.RunThread.run(RunThread.java:62)
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - 	at java.lang.Thread.run(Unknown Source)
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - Caused by: org.pentaho.di.core.exception.KettleDatabaseException: 
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - Couldn't get field info from [SELECT
+  ENTITY_ID
+, version
+, operation
+, idProyecto
+, limitativo
+, nombre
+, proyectoFinalista
+FROM app.Proyecto
+where version = ${version} and idProyecto in (16373,6748,15760,11871,3995,13256,14859,5875,16291,428,19953,172,20061,10527,15584,9346,11894,205,12307,9349,19958,19815,3537,14679,16829,17627,14625,16281,13621,8522,19958,
+19815,3537,14679,16829,17627,14625,16281)
+
+
+
+
+]
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - 
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - unknown escape sequence {version}
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - 
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - 	at org.pentaho.di.core.database.Database.getQueryFieldsFallback(Database.java:2569)
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - 	at org.pentaho.di.core.database.Database.getQueryFields(Database.java:2416)
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - 	at org.pentaho.di.trans.steps.tableinput.TableInputMeta.getFields(TableInputMeta.java:267)
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - 	... 12 more
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - Caused by: java.sql.SQLException: unknown escape sequence {version}
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - 	at org.mariadb.jdbc.internal.util.Utils.resolveEscapes(Utils.java:461)
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - 	at org.mariadb.jdbc.internal.util.Utils.nativeSql(Utils.java:555)
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - 	at org.mariadb.jdbc.MariaDbConnection.internalPrepareStatement(MariaDbConnection.java:471)
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - 	at org.mariadb.jdbc.MariaDbConnection.prepareStatement(MariaDbConnection.java:274)
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - 	at org.pentaho.di.core.database.Database.getQueryFieldsFallback(Database.java:2535)
+2020/12/04 12:08:56 - Left Join Fecha Cerrado.0 - 	... 14 more
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - ERROR (version 9.1.0.0-324, build 9.1.0.0-324 from 2020-09-07 05.09.05 by buildguy) : Unexpected error
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - ERROR (version 9.1.0.0-324, build 9.1.0.0-324 from 2020-09-07 05.09.05 by buildguy) : org.pentaho.di.core.exception.KettleStepException: 
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - Unable to get queryfields for SQL: 
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - SELECT
+  ENTITY_ID
+, version
+, operation
+, idProyecto
+, limitativo
+, nombre
+, proyectoFinalista
+FROM app.Proyecto
+where version = ${version} and idProyecto in (16373,6748,15760,11871,3995,13256,14859,5875,16291,428,19953,172,20061,10527,15584,9346,11894,205,12307,9349,19958,19815,3537,14679,16829,17627,14625,16281,13621,8522,19958,
+19815,3537,14679,16829,17627,14625,16281)
+
+
+
+
+
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - 
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - Couldn't get field info from [SELECT
+  ENTITY_ID
+, version
+, operation
+, idProyecto
+, limitativo
+, nombre
+, proyectoFinalista
+FROM app.Proyecto
+where version = ${version} and idProyecto in (16373,6748,15760,11871,3995,13256,14859,5875,16291,428,19953,172,20061,10527,15584,9346,11894,205,12307,9349,19958,19815,3537,14679,16829,17627,14625,16281,13621,8522,19958,
+19815,3537,14679,16829,17627,14625,16281)
+
+
+
+
+]
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - 
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - unknown escape sequence {version}
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - 
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - 
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - 	at org.pentaho.di.trans.steps.tableinput.TableInputMeta.getFields(TableInputMeta.java:275)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - 	at org.pentaho.di.trans.TransMeta.getThisStepFields(TransMeta.java:2054)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1872)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1835)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1835)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1835)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1835)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1769)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1732)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - 	at org.pentaho.di.trans.TransMeta.getThisStepFields(TransMeta.java:2042)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1872)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1769)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1732)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1716)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - 	at org.pentaho.di.trans.steps.mergejoin.MergeJoin.processRow(MergeJoin.java:99)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - 	at org.pentaho.di.trans.step.RunThread.run(RunThread.java:62)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - 	at java.lang.Thread.run(Unknown Source)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - Caused by: org.pentaho.di.core.exception.KettleDatabaseException: 
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - Couldn't get field info from [SELECT
+  ENTITY_ID
+, version
+, operation
+, idProyecto
+, limitativo
+, nombre
+, proyectoFinalista
+FROM app.Proyecto
+where version = ${version} and idProyecto in (16373,6748,15760,11871,3995,13256,14859,5875,16291,428,19953,172,20061,10527,15584,9346,11894,205,12307,9349,19958,19815,3537,14679,16829,17627,14625,16281,13621,8522,19958,
+19815,3537,14679,16829,17627,14625,16281)
+
+
+
+
+]
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - 
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - unknown escape sequence {version}
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - 
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - 	at org.pentaho.di.core.database.Database.getQueryFieldsFallback(Database.java:2569)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - 	at org.pentaho.di.core.database.Database.getQueryFields(Database.java:2416)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - 	at org.pentaho.di.trans.steps.tableinput.TableInputMeta.getFields(TableInputMeta.java:267)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - 	... 16 more
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - Caused by: java.sql.SQLException: unknown escape sequence {version}
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - 	at org.mariadb.jdbc.internal.util.Utils.resolveEscapes(Utils.java:461)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - 	at org.mariadb.jdbc.internal.util.Utils.nativeSql(Utils.java:555)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - 	at org.mariadb.jdbc.MariaDbConnection.internalPrepareStatement(MariaDbConnection.java:471)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - 	at org.mariadb.jdbc.MariaDbConnection.prepareStatement(MariaDbConnection.java:274)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - 	at org.pentaho.di.core.database.Database.getQueryFieldsFallback(Database.java:2535)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto.0 - 	... 18 more
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - ERROR (version 9.1.0.0-324, build 9.1.0.0-324 from 2020-09-07 05.09.05 by buildguy) : Unexpected error
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - ERROR (version 9.1.0.0-324, build 9.1.0.0-324 from 2020-09-07 05.09.05 by buildguy) : org.pentaho.di.core.exception.KettleStepException: 
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - Unable to get queryfields for SQL: 
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - SELECT
+  ENTITY_ID
+, version
+, operation
+, idProyecto
+, limitativo
+, nombre
+, proyectoFinalista
+FROM app.Proyecto
+where version = ${version} and idProyecto in (16373,6748,15760,11871,3995,13256,14859,5875,16291,428,19953,172,20061,10527,15584,9346,11894,205,12307,9349,19958,19815,3537,14679,16829,17627,14625,16281,13621,8522,19958,
+19815,3537,14679,16829,17627,14625,16281)
+
+
+
+
+
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - 
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - Couldn't get field info from [SELECT
+  ENTITY_ID
+, version
+, operation
+, idProyecto
+, limitativo
+, nombre
+, proyectoFinalista
+FROM app.Proyecto
+where version = ${version} and idProyecto in (16373,6748,15760,11871,3995,13256,14859,5875,16291,428,19953,172,20061,10527,15584,9346,11894,205,12307,9349,19958,19815,3537,14679,16829,17627,14625,16281,13621,8522,19958,
+19815,3537,14679,16829,17627,14625,16281)
+
+
+
+
+]
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - 
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - unknown escape sequence {version}
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - 
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - 
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - 	at org.pentaho.di.trans.steps.tableinput.TableInputMeta.getFields(TableInputMeta.java:275)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - 	at org.pentaho.di.trans.TransMeta.getThisStepFields(TransMeta.java:2054)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1872)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1835)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1835)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1835)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1835)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1769)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1732)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - 	at org.pentaho.di.trans.TransMeta.getThisStepFields(TransMeta.java:2042)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1872)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1769)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1732)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - 	at org.pentaho.di.trans.TransMeta.getThisStepFields(TransMeta.java:2042)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1872)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1769)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1732)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1716)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - 	at org.pentaho.di.trans.steps.mergejoin.MergeJoin.processRow(MergeJoin.java:99)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - 	at org.pentaho.di.trans.step.RunThread.run(RunThread.java:62)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - 	at java.lang.Thread.run(Unknown Source)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - Caused by: org.pentaho.di.core.exception.KettleDatabaseException: 
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - Couldn't get field info from [SELECT
+  ENTITY_ID
+, version
+, operation
+, idProyecto
+, limitativo
+, nombre
+, proyectoFinalista
+FROM app.Proyecto
+where version = ${version} and idProyecto in (16373,6748,15760,11871,3995,13256,14859,5875,16291,428,19953,172,20061,10527,15584,9346,11894,205,12307,9349,19958,19815,3537,14679,16829,17627,14625,16281,13621,8522,19958,
+19815,3537,14679,16829,17627,14625,16281)
+
+
+
+
+]
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - 
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - unknown escape sequence {version}
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - 
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - 	at org.pentaho.di.core.database.Database.getQueryFieldsFallback(Database.java:2569)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - 	at org.pentaho.di.core.database.Database.getQueryFields(Database.java:2416)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - 	at org.pentaho.di.trans.steps.tableinput.TableInputMeta.getFields(TableInputMeta.java:267)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - 	... 20 more
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - Caused by: java.sql.SQLException: unknown escape sequence {version}
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - 	at org.mariadb.jdbc.internal.util.Utils.resolveEscapes(Utils.java:461)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - 	at org.mariadb.jdbc.internal.util.Utils.nativeSql(Utils.java:555)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - 	at org.mariadb.jdbc.MariaDbConnection.internalPrepareStatement(MariaDbConnection.java:471)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - 	at org.mariadb.jdbc.MariaDbConnection.prepareStatement(MariaDbConnection.java:274)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - 	at org.pentaho.di.core.database.Database.getQueryFieldsFallback(Database.java:2535)
+2020/12/04 12:08:56 - Left Join idOrigenProyecto 2.0 - 	... 22 more
+2020/12/04 12:08:59 - 5.1.Plain_Proyecto - ERROR (version 9.1.0.0-324, build 9.1.0.0-324 from 2020-09-07 05.09.05 by buildguy) : Errors detected!
+2020/12/04 12:09:00 - FacturaProyecto.0 - ERROR (version 9.1.0.0-324, build 9.1.0.0-324 from 2020-09-07 05.09.05 by buildguy) : Unexpected error
+2020/12/04 12:09:00 - FacturaProyecto.0 - ERROR (version 9.1.0.0-324, build 9.1.0.0-324 from 2020-09-07 05.09.05 by buildguy) : org.pentaho.di.core.exception.KettleDatabaseException: 
+2020/12/04 12:09:00 - FacturaProyecto.0 - An error occurred executing SQL: 
+2020/12/04 12:09:00 - FacturaProyecto.0 - SELECT
+  ENTITY_ID
+, version
+, operation
+, idFacturaEmitida
+, idProyecto
+, numero
+, numeroAnualidad
+, numeroFacturaPrevista
+FROM app.FacturaProyecto
+where version = ${version} and idFacturaEmitida in ('FEM-J-2015-593','FEM-J-2015-939','FEM-J-2000-80','FEM-J-2013-435','FEM-J-2015-285','FEM-BF-2014-6','FEM-J-2012-151','FEM-J-2015-613','FEM-J-2010-494','FEM-J-2012-296','FEM-J-2013-85','FEM-J-2013-651','FEM-J-2012-611',
+'FEM-J-2010-178','FEM-J-2015-823','FEM-J-2014-34','FEM-J-2010-601','FEM-J-2014-53','FEM-J-2007-155','FEM-J-2002-362','FEM-J-2009-524','FEM-J-2003-80','FEM-J-2013-534','FEM-J-2014-345','FEM-J-2012-85','FEM-J-2011-548','FEM-BF-2011-5','FEM-J-2012-58','FEM-J-2014-352',
+'FEM-J-2013-414')
+order by idProyecto asc
+LIMIT 30
+2020/12/04 12:09:00 - FacturaProyecto.0 - unknown escape sequence {version}
+2020/12/04 12:09:00 - FacturaProyecto.0 - 
+2020/12/04 12:09:00 - FacturaProyecto.0 - 	at org.pentaho.di.core.database.Database.openQuery(Database.java:1772)
+2020/12/04 12:09:00 - FacturaProyecto.0 - 	at org.pentaho.di.trans.steps.tableinput.TableInput.doQuery(TableInput.java:236)
+2020/12/04 12:09:00 - FacturaProyecto.0 - 	at org.pentaho.di.trans.steps.tableinput.TableInput.processRow(TableInput.java:140)
+2020/12/04 12:09:00 - FacturaProyecto.0 - 	at org.pentaho.di.trans.step.RunThread.run(RunThread.java:62)
+2020/12/04 12:09:00 - FacturaProyecto.0 - 	at java.lang.Thread.run(Unknown Source)
+2020/12/04 12:09:00 - FacturaProyecto.0 - Caused by: java.sql.SQLException: unknown escape sequence {version}
+2020/12/04 12:09:00 - FacturaProyecto.0 - 	at org.mariadb.jdbc.internal.util.Utils.resolveEscapes(Utils.java:461)
+2020/12/04 12:09:00 - FacturaProyecto.0 - 	at org.mariadb.jdbc.internal.util.Utils.nativeSql(Utils.java:555)
+2020/12/04 12:09:00 - FacturaProyecto.0 - 	at org.mariadb.jdbc.MariaDbStatement.executeInternal(MariaDbStatement.java:344)
+2020/12/04 12:09:00 - FacturaProyecto.0 - 	at org.mariadb.jdbc.MariaDbStatement.executeQuery(MariaDbStatement.java:595)
+2020/12/04 12:09:00 - FacturaProyecto.0 - 	at org.pentaho.di.core.database.Database.openQuery(Database.java:1761)
+2020/12/04 12:09:00 - FacturaProyecto.0 - 	... 4 more
+2020/12/04 12:09:00 - 5.2.Plain_FacturaProyecto - ERROR (version 9.1.0.0-324, build 9.1.0.0-324 from 2020-09-07 05.09.05 by buildguy) : Errors detected!
+2020/12/04 12:09:00 - Group by.0 - ERROR (version 9.1.0.0-324, build 9.1.0.0-324 from 2020-09-07 05.09.05 by buildguy) : Unexpected error
+2020/12/04 12:09:00 - Group by.0 - ERROR (version 9.1.0.0-324, build 9.1.0.0-324 from 2020-09-07 05.09.05 by buildguy) : org.pentaho.di.core.exception.KettleStepException: 
+2020/12/04 12:09:00 - Group by.0 - Unable to get queryfields for SQL: 
+2020/12/04 12:09:00 - Group by.0 - SELECT
+  ENTITY_ID
+, version
+, operation
+, idFacturaEmitida
+, idProyecto
+, numero
+, numeroAnualidad
+, numeroFacturaPrevista
+FROM app.FacturaProyecto
+where version = ${version} and idFacturaEmitida in ('FEM-J-2015-593','FEM-J-2015-939','FEM-J-2000-80','FEM-J-2013-435','FEM-J-2015-285','FEM-BF-2014-6','FEM-J-2012-151','FEM-J-2015-613','FEM-J-2010-494','FEM-J-2012-296','FEM-J-2013-85','FEM-J-2013-651','FEM-J-2012-611',
+'FEM-J-2010-178','FEM-J-2015-823','FEM-J-2014-34','FEM-J-2010-601','FEM-J-2014-53','FEM-J-2007-155','FEM-J-2002-362','FEM-J-2009-524','FEM-J-2003-80','FEM-J-2013-534','FEM-J-2014-345','FEM-J-2012-85','FEM-J-2011-548','FEM-BF-2011-5','FEM-J-2012-58','FEM-J-2014-352',
+'FEM-J-2013-414')
+order by idProyecto asc
+LIMIT 30
+2020/12/04 12:09:00 - Group by.0 - 
+2020/12/04 12:09:00 - Group by.0 - Couldn't get field info from [SELECT
+  ENTITY_ID
+, version
+, operation
+, idFacturaEmitida
+, idProyecto
+, numero
+, numeroAnualidad
+, numeroFacturaPrevista
+FROM app.FacturaProyecto
+where version = ${version} and idFacturaEmitida in ('FEM-J-2015-593','FEM-J-2015-939','FEM-J-2000-80','FEM-J-2013-435','FEM-J-2015-285','FEM-BF-2014-6','FEM-J-2012-151','FEM-J-2015-613','FEM-J-2010-494','FEM-J-2012-296','FEM-J-2013-85','FEM-J-2013-651','FEM-J-2012-611',
+'FEM-J-2010-178','FEM-J-2015-823','FEM-J-2014-34','FEM-J-2010-601','FEM-J-2014-53','FEM-J-2007-155','FEM-J-2002-362','FEM-J-2009-524','FEM-J-2003-80','FEM-J-2013-534','FEM-J-2014-345','FEM-J-2012-85','FEM-J-2011-548','FEM-BF-2011-5','FEM-J-2012-58','FEM-J-2014-352',
+'FEM-J-2013-414')
+order by idProyecto asc
+LIMIT 30]
+2020/12/04 12:09:00 - Group by.0 - 
+2020/12/04 12:09:00 - Group by.0 - unknown escape sequence {version}
+2020/12/04 12:09:00 - Group by.0 - 
+2020/12/04 12:09:00 - Group by.0 - 
+2020/12/04 12:09:00 - Group by.0 - 	at org.pentaho.di.trans.steps.tableinput.TableInputMeta.getFields(TableInputMeta.java:275)
+2020/12/04 12:09:00 - Group by.0 - 	at org.pentaho.di.trans.TransMeta.getThisStepFields(TransMeta.java:2054)
+2020/12/04 12:09:00 - Group by.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1872)
+2020/12/04 12:09:00 - Group by.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1835)
+2020/12/04 12:09:00 - Group by.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1835)
+2020/12/04 12:09:00 - Group by.0 - 	at org.pentaho.di.trans.TransMeta.getStepFields(TransMeta.java:1835)
+2020/12/04 12:09:00 - Group by.0 - 	at org.pentaho.di.trans.TransMeta.getPrevStepFields(TransMeta.java:1951)
+2020/12/04 12:09:00 - Group by.0 - 	at org.pentaho.di.trans.TransMeta.getPrevStepFields(TransMeta.java:1921)
+2020/12/04 12:09:00 - Group by.0 - 	at org.pentaho.di.trans.TransMeta.getPrevStepFields(TransMeta.java:1904)
+2020/12/04 12:09:00 - Group by.0 - 	at org.pentaho.di.trans.steps.groupby.GroupBy.processRow(GroupBy.java:114)
+2020/12/04 12:09:00 - Group by.0 - 	at org.pentaho.di.trans.step.RunThread.run(RunThread.java:62)
+2020/12/04 12:09:00 - Group by.0 - 	at java.lang.Thread.run(Unknown Source)
+2020/12/04 12:09:00 - Group by.0 - Caused by: org.pentaho.di.core.exception.KettleDatabaseException: 
+2020/12/04 12:09:00 - Group by.0 - Couldn't get field info from [SELECT
+  ENTITY_ID
+, version
+, operation
+, idFacturaEmitida
+, idProyecto
+, numero
+, numeroAnualidad
+, numeroFacturaPrevista
+FROM app.FacturaProyecto
+where version = ${version} and idFacturaEmitida in ('FEM-J-2015-593','FEM-J-2015-939','FEM-J-2000-80','FEM-J-2013-435','FEM-J-2015-285','FEM-BF-2014-6','FEM-J-2012-151','FEM-J-2015-613','FEM-J-2010-494','FEM-J-2012-296','FEM-J-2013-85','FEM-J-2013-651','FEM-J-2012-611',
+'FEM-J-2010-178','FEM-J-2015-823','FEM-J-2014-34','FEM-J-2010-601','FEM-J-2014-53','FEM-J-2007-155','FEM-J-2002-362','FEM-J-2009-524','FEM-J-2003-80','FEM-J-2013-534','FEM-J-2014-345','FEM-J-2012-85','FEM-J-2011-548','FEM-BF-2011-5','FEM-J-2012-58','FEM-J-2014-352',
+'FEM-J-2013-414')
+order by idProyecto asc
+LIMIT 30]
+2020/12/04 12:09:00 - Group by.0 - 
+2020/12/04 12:09:00 - Group by.0 - unknown escape sequence {version}
+2020/12/04 12:09:00 - Group by.0 - 
+2020/12/04 12:09:00 - Group by.0 - 	at org.pentaho.di.core.database.Database.getQueryFieldsFallback(Database.java:2569)
+2020/12/04 12:09:00 - Group by.0 - 	at org.pentaho.di.core.database.Database.getQueryFields(Database.java:2416)
+2020/12/04 12:09:00 - Group by.0 - 	at org.pentaho.di.trans.steps.tableinput.TableInputMeta.getFields(TableInputMeta.java:267)
+2020/12/04 12:09:00 - Group by.0 - 	... 11 more
+2020/12/04 12:09:00 - Group by.0 - Caused by: java.sql.SQLException: unknown escape sequence {version}
+2020/12/04 12:09:00 - Group by.0 - 	at org.mariadb.jdbc.internal.util.Utils.resolveEscapes(Utils.java:461)
+2020/12/04 12:09:00 - Group by.0 - 	at org.mariadb.jdbc.internal.util.Utils.nativeSql(Utils.java:555)
+2020/12/04 12:09:00 - Group by.0 - 	at org.mariadb.jdbc.MariaDbConnection.internalPrepareStatement(MariaDbConnection.java:471)
+2020/12/04 12:09:00 - Group by.0 - 	at org.mariadb.jdbc.MariaDbConnection.prepareStatement(MariaDbConnection.java:274)
+2020/12/04 12:09:00 - Group by.0 - 	at org.pentaho.di.core.database.Database.getQueryFieldsFallback(Database.java:2535)
+2020/12/04 12:09:00 - Group by.0 - 	... 13 more
+2020/12/04 12:09:01 - 5.2.Plain_FacturaProyecto - ERROR (version 9.1.0.0-324, build 9.1.0.0-324 from 2020-09-07 05.09.05 by buildguy) : Errors detected!
+2020/12/04 12:09:02 - KO. Carga Facturas - ERROR (version 9.1.0.0-324, build 9.1.0.0-324 from 2020-09-07 05.09.05 by buildguy) : ERROR. Error en la carga de las Facturas
+2020/12/04 12:09:03 - 9.0.finalize_failed - Using run configuration [Pentaho local]

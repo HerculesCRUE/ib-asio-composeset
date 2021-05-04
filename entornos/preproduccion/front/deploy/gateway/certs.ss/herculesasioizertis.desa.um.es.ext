@@ -1,0 +1,21 @@
+authorityKeyIdentifier=keyid,issuer
+basicConstraints=CA:FALSE
+keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
+subjectAltName = @alt_names
+[alt_names]
+DNS.1 = herculesasioizertis.desa.um.es # Be sure to include the domain name here because Common Name is not so commonly honoured by itself
+DNS.2 = www.herculesasioizertis.desa.um.es # Optionally, add additional domains (I've added a subdomain here)
+DNS.3 = keycloak.herculesasioizertis.desa.um.es
+DNS.4 = portainer.herculesasioizertis.desa.um.es
+DNS.5 = samltest.herculesasioizertis.desa.um.es
+DNS.6 = ldp.herculesasioizertis.desa.um.es
+DNS.7 = graylog.herculesasioizertis.desa.um.es
+DNS.8 = sparql.herculesasioizertis.desa.um.es
+DNS.9 = wb.herculesasioizertis.desa.um.es
+DNS.10 = wbquery.herculesasioizertis.desa.um.es
+DNS.11 = reports.herculesasioizertis.desa.um.es
+DNS.12 = benchmarks.herculesasioizertis.desa.um.es
+DNS.13 = herc-iz-front-desa.atica.um.es
+DNS.14 = herc-iz-back-desa.atica.um.es
+DNS.15 = herc-iz-bd-desa.atica.um.es
+DNS.16 = app.herculesasioizertis.desa.um.es
